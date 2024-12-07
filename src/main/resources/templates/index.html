@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Name Greeting</title>
+</head>
+<body>
+    <label>Enter your name:</label>
+    <label for="name"></label><input type="text" id="name" />
+    <button id="submit">Submit</button>
+    <div id="result"></div>
+
+    <h1>Customer List</h1>
+    <ul>
+        <li th:each="customer : ${customers}">
+            <span th:text="${customer.id}"></span> - <span th:text="${customer.name}"></span>
+        </li>
+    </ul>
+
+    <script>
+            document.getElementById('submit').addEventListener('click', function() {
+                let name = document.getElementById('name').value;
+                fetch('/greet?name=' + encodeURIComponent(name))
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('result').textContent = data;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        document.getElementById('result').textContent = 'Error getting greeting.';
+                    });
+            });
+    </script>
+</body>
+</html>
