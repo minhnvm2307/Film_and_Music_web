@@ -2,34 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Name Greeting</title>
+    <title>MINH-FILM | Phim Online | Phim HD</title>
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/images.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/mainHome.css}" rel="stylesheet" />
 </head>
 <body>
-    <label>Enter your name:</label>
-    <label for="name"></label><input type="text" id="name" />
-    <button id="submit">Submit</button>
-    <div id="result"></div>
+    <div th:replace="layout/header :: header"></div>
 
-    <h1>Customer List</h1>
-    <ul>
-        <li th:each="customer : ${customers}">
-            <span th:text="${customer.id}"></span> - <span th:text="${customer.name}"></span>
-        </li>
-    </ul>
+    <div th:fragment="content">
+        <label for="name">Enter your name:</label><input type="text" id="name" />
+        <button id="submit">Submit</button>
+        <div id="result"></div>
 
-    <script>
-            document.getElementById('submit').addEventListener('click', function() {
-                let name = document.getElementById('name').value;
-                fetch('/greet?name=' + encodeURIComponent(name))
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('result').textContent = data;
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        document.getElementById('result').textContent = 'Error getting greeting.';
-                    });
-            });
-    </script>
+        <button id="reload">Reload</button>
+
+        <h3>Customer List</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>ADDRESS</th>
+                <th>PHONE</th>
+            </tr>
+            <tr th:if="${customers != null}" th:each="customer : ${customers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.address}"></td>
+                <td th:text="${customer.phone}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:replace="layout/footer :: footer"></div>
+    <script th:src="@{/assets/js/test.js}"></script>
 </body>
 </html>

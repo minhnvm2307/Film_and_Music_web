@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <nav th:fragment="header">
+        <div id="header">
+            <div class="hbox">
+                <div id="logo">
+                    <a th:href="@{/index}" title="MINH-FILM">
+                        <img th:src="@{/assets/images/logo.png}" alt="Logo" />
+                    </a>
+                </div>
+                <ul id="main-menu" class="no-bullet">
+                    <li>
+                        <a title="Top film" href="#" class="btn">Topphim</a>
+                    </li>
+                    <li>
+                        <a title="Recently film" href="#" class="btn">PhimGanday</a>
+                    </li>
+                    <li>
+                        <a title="Liked film" href="#" class="btn">PhimYeuThich</a>
+                    </li>
+                </ul>
+                <form id="form-search" class="form-search">
+                    <input placeholder="Tìm kiếm" type="text" id="search-input">
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <h1>MINH-FILM.net</h1>
+        </div>
+        <h3>Spring Boot + Thymeleaf + MySQL</h3>
+    </nav>
+</body>
+</html>
