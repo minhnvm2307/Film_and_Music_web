@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <title th:text="#{web.name}"></title>
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link th:href="@{/assets/css/film/film-list.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/film/poster-film.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/filter-menu.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/images.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/mainHome.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/sidebar.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/top-menu.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- The menu bars -->
+    <header th:insert="~{layout/header :: header}"></header>
+    <div class="side-menu" th:insert="~{layout/side-menu :: side-menu}"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Film Home</h1>
+                <p>Welcome to the Film Home Page</p>
+            </div>
+        </div>
+    </div>
+    <!-- <div id="#table-film" class="container">
+
+        <div class="film-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Poster</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Release Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="film : ${Films}">
+                        <td th:text="${film.film_id}"></td>
+                        <td>
+                            <img th:src="${film.poster_img}" alt="Poster" style="max-width: 40px;"/>
+                        </td>
+                        <td th:text="${film.film_name}"></td>
+                        <td th:text="${film.film_description}"></td>
+                        <td th:text="${film.release_date}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+
+    <!-- All the films -->
+    <div class="container">
+        <div th:replace="~{film/film-list :: film-list}"></div>
+    </div>
+
+
+    <!-- Add a filter form here -->
+    <div class="container">
+        <div th:replace="~{layout/filter-board :: filter-board}"></div>
+    </div>
+    
+
+    <footer th:replace="~{layout/footer :: footer}"></footer>
+    <script th:src="@{/assets/js/film/menu.js}"></script>
+    <script th:src="@{/assets/js/film/filter.js}"></script>
+    <script th:src="@{/assets/js/film/rating.js}"></script>
+    <script th:src="@{/assets/js/film/play-film.js}"></script>
+</body>
+</html>

@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <title th:text="#{web.name}"></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link th:href="@{/assets/css/login.css}" rel="stylesheet" />
 </head>
 <body>
-    
+
+    <div class="container">
+        <div class="login-container">
+            <div class="login-form">
+                <h1>Login</h1>
+                <form action="#" method="post">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required="required" />
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" required />
+                            <i class="fas fa-eye" id="toggle-password"></i>
+                        </div>
+                    </div>
+                    <button id="loginButton" type="submit">Login</button>
+                    <div th:if="${error}" class="error-message">
+                        <p th:text="${error}"></p>
+                    </div>
+
+                    <div class="sign-up">
+                        <a href="/forgot-password">Forgot Password?</a>
+                        <span>Don't have an account?</span>
+                        <a href="/register">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script th:src="@{/assets/js/login.js}"></script>
 </body>
 </html>
