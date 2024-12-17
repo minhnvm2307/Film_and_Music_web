@@ -26,11 +26,11 @@ public class UserImplement implements UserService {
 
     @Override
     public UserEntity getUserByUsername(String username) {
-        UserEntity userEntity = userRepository.findByUsername(username);
-        if (userEntity == null) {
-            throw new NullPointerException("User not found: " + username);
-        }
-        return userEntity;
+        return userRepository.findByUsername(username);
     }
     
+    @Override
+    public UserEntity getUserById(Integer id) {
+        return userRepository.findById(id).get();
+    }
 }

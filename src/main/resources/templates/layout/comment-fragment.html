@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    /* From Uiverse.io by zanina-yassine */ 
+    <div class="comment-card" th:fragment="comment-fragment">
+        <span class="title">Comments</span>
+
+        <div class="text-box" th:data-film-id="${FilmCell[0]}" th:data-user-id="${User.user_id}">
+            <span th:text="${User.user_id}"></span>
+            <span th:text="${FilmCell[0]}"></span>
+
+            <div class="box-container">
+            <textarea placeholder="Add your comment"></textarea>
+            <div>
+                <div class="formatting">
+                <button type="button">
+                    <i class="fa-solid fa-bold"></i>
+                </button>
+                <button type="button">
+                    <i class="fas fa-italic"></i>
+                </button>
+                <button type="button">
+                    <i class="fas fa-underline"></i>
+                </button>
+                <button type="button">
+                    <i class="fas fa-icons"></i>
+                </button>
+                <button type="submit" class="send" title="Send" id="send-comment">
+                    <i class="fas fa-arrow-up" style="color: #fff;"></i>
+                </button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div th:each="comment : ${Comments}" class="comments">
+            <div class="comment-react">
+                <hr>
+                <span th:text="${comment.comment_id}"></span>
+            </div>
+            <div class="comment-container">
+                <div class="user">
+                    <div class="user-pic">
+                        <i class="fa-solid fa-user" style="color: #a8a4a4;"></i>
+                    </div>
+                    <div class="user-info">
+                        <span th:text="${comment.user.name}"></span>
+                        <p th:text="${comment.time_rated}"></p>
+                    </div>
+                </div>
+                <p class="comment-content" th:text="${comment.comment_text}"></p>
+            </div>
+            <br>
+            <div>
+                <button type="button" style="border: none;" class="reply-button">
+                    <i class="fas fa-reply"></i>
+                </button>
+            </div>
+            <br>
+            <div class="reply-box">
+                <div class="box-container">
+                    <textarea placeholder="Reply"></textarea>
+                    <div>
+                        <div class="formatting
+                        ">
+                            <button type="submit" class="send" title="Send">
+                                <i class="fas fa-arrow-up" style="color: #2a2828;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>        
+    </div>
+    
+</body>
+</html>

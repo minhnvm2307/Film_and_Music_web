@@ -24,40 +24,34 @@ top_link.forEach(link => {
     });
 });
 
-// Binding the page with the menu buttons
-const menuButtons = document.querySelectorAll('.top-menu a');
+document.addEventListener('DOMContentLoaded', () => {
+    const currentLocation = location.href;
+    const side_link = document.querySelectorAll('.sidebar a');
 
-menuButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-        event.preventDefault();
-
-        // Get the href attribute
-        const href = button.getAttribute('href');
-
-        // Check if href starts with '#' (indicating an in-page link)
-        if (href.startsWith('#')) {
-            const target = document.querySelector(href); // Find the target section
-            if (target) {
-                // Scroll to the target smoothly
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
+    // Loop through all side_link
+    side_link.forEach(link => {
+        if (link.href === currentLocation) {
+            // Add 'active' class to the clicked link
+            link.classList.add('active');
         } else {
-            // Handle full URL or relative paths
-            const currentPath = window.location.pathname;
-
-            // Check if the href matches the current path
-            if (href === currentPath || href.includes(currentPath)) {
-                console.log("Navigating to:", href);
-
-                // Make the clicked button active
-                menuButtons.forEach(b => b.classList.remove('active'));
-                button.classList.add('active');
-            }
-
-            // Optionally, navigate to the URL
-            window.location.href = href;
+            // Remove 'active' class from all side_link
+            link.classList.remove('active');
         }
     });
+
+    const top_link = document.querySelectorAll('.top-menu a');
+
+    // Loop through all top_link
+    top_link.forEach(link => {
+        if (link.href === currentLocation) {
+            // Add 'active' class to the clicked link
+            link.classList.add('active');
+        } else {
+            // Remove 'active' class from all top_link
+            link.classList.remove('active');
+        }
+    });
+
 });
 
 

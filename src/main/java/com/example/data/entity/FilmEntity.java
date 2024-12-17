@@ -44,6 +44,9 @@ public class FilmEntity {
     @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StarRatedEntity> starRatings = new ArrayList<>();
 
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CommentEntity> comments = new ArrayList<>();
+
     @ManyToMany
     @JoinTable(
         name = "film_category",

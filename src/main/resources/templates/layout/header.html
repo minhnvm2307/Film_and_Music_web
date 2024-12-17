@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-    <nav th:fragment="header">
+    <nav th:fragment="header" class="header-menu" th:attr="data-username=${User.username}">
         <div class="top-menu">
             <a href="#" class="active">
                 <span>Popular</span>
@@ -25,7 +25,7 @@
                 <span>Annoucements</span>
             </a>
             <div class="user-info">
-                <span>Nguyen Van Minh</span>
+                <span th:text="${User.name}"></span>
                 <a th:href="@{/index}" title="MINH-FILM">
                     <img th:src="@{/assets/images/logo.png}" alt="Logo" class="avatar" />
                 </a>

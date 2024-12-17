@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
           .then(data => {
               if (data) {
                   alert('Login successful!');
-                  window.location.href = '/index';
+                  window.location.href = '/index' + '?username=' + encodeURIComponent(username);
               } else {
                   alert('Login failed. Please check your username and password.');
               }

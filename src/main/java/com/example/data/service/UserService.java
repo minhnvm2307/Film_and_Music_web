@@ -7,5 +7,7 @@ public interface UserService {
 
     boolean LoginRequestAuthentication(LoginRequest loginRequest);
 
-    UserEntity getUserByUsername(String username); 
+    UserEntity getUserByUsername(String username);
+
+    UserEntity getUserById(Integer id);
 }
