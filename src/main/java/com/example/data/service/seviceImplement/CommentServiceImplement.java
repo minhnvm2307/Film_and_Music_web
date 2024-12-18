@@ -30,4 +30,8 @@ public class CommentServiceImplement implements CommentService {
     public CommentEntity getCommentById(Integer commentId) {
         return commentRepository.findById(commentId).orElse(null);
     }
+
+    public List<CommentEntity> getCommentsByParentCommentId(Integer parentCommentId) {
+        return commentRepository.findByParentCommentId(parentCommentId);
+    }
 }

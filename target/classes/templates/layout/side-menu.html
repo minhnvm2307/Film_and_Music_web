@@ -3,11 +3,11 @@
 <body th:fragment="side-menu">
     <nav id="sidebar">
         <div class="sidebar">
-            <a href="http://localhost:8080/index" class="active">
+            <a th:href="@{/index(username=${User.username})}" class="active">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
-            <a href="#">
+            <a th:href="@{/film/film-page(username=${User.username})}">
                 <i class="fas fa-film"></i>
                 <span>Cinema</span>
             </a>

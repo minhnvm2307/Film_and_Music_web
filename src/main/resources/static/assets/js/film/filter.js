@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const categorySelect = document.getElementById('category');
     const filterButton = document.getElementById('filterButton');
     const resetButton = document.getElementById('resetButton');
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('menu-search-button');
     const sortSelect = document.getElementById('sortingType');
     const sortButton = document.getElementById('sortButton');
     const ALL_CATEGORY = '';
@@ -47,24 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
         categorySelect.value = ALL_CATEGORY;
         filterButton.click();
         resetButton.style.display = 'none';
-    });
-
-    // Handle Search button click
-    searchButton.addEventListener('click', function (event) {
-        event.preventDefault();
-
-        const searchQuery = searchInput.value.trim().toLowerCase();
-        console.log('Search query:', searchQuery);
-
-        // Update header title
-        updateTitleSection(searchQuery, true);
-
-        // Filter film cards based on search query
-        const cards = document.querySelectorAll('.film-card');
-        cards.forEach(card => {
-            const filmTitle = card.querySelector('.film-title').textContent.toLowerCase();
-            card.style.display = filmTitle.includes(searchQuery) ? 'block' : 'none';
-        });
     });
 
     // Handle Sort by Rating button click

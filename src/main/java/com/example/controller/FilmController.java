@@ -5,17 +5,16 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.data.service.FilmService;
-import com.example.data.service.UserService;
 import com.example.data.entity.FilmEntity;
 import com.example.data.service.FilmCategoryService;
+import com.example.data.service.FilmService;
+import com.example.data.service.UserService;
 
 @Controller
 public class FilmController {
@@ -62,10 +61,12 @@ public class FilmController {
     }
 
     @GetMapping("/film/film-page")
-    public String filmPage(Model model) {
+    public String filmPage(@RequestParam String username, Model model) {
         model.addAttribute("FilmsWithRating", filmService.getFilmsWithRatings());
 
         model.addAttribute("categories", filmCategoryService.findAll());
+
+        model.addAttribute("User", userService.getUserByUsername(username));
 
         return "film/film-page";
     }

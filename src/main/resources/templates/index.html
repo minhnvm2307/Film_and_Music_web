@@ -10,14 +10,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link th:href="@{/assets/css/film/film-list.css}" rel="stylesheet" />
     <link th:href="@{/assets/css/film/poster-film.css}" rel="stylesheet" />
-    <link th:href="@{/assets/css/filter-menu.css}" rel="stylesheet" />
     <link th:href="@{/assets/css/images.css}" rel="stylesheet" />
     <link th:href="@{/assets/css/mainHome.css}" rel="stylesheet" />
     <link th:href="@{/assets/css/sidebar.css}" rel="stylesheet" />
-    <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
     <link th:href="@{/assets/css/top-menu.css}" rel="stylesheet" />
 </head>
 <body>
+    /*
+    * This page is the main page of the website.
+    * It contains :
+    *   - A header (header) (the top menu)
+    *   - A side menu (side-menu)
+    *
+    *   - A list of top films (top-films - the poster of top 5 films) 
+    *   - A list of films (film-list)
+    *
+    *   - A footer (footer)
+    */
     <header th:insert="~{layout/header :: header}"></header>
     
     <div class="side-menu" th:insert="~{layout/side-menu :: side-menu}"></div>
@@ -33,9 +42,10 @@
 
 
     <footer th:replace="~{layout/footer :: footer}"></footer>
+    
     <script th:src="@{/assets/js/film/menu.js}"></script>
     <script th:src="@{/assets/js/film/pagination.js}"></script>
-    <script th:src="@{/assets/js/film/filter.js}"></script>
+    <script th:src="@{/assets/js/film/search.js}"></script>
     <script th:src="@{/assets/js/film/rating.js}"></script>
     <script th:src="@{/assets/js/film/play-film.js}"></script>
 </body>

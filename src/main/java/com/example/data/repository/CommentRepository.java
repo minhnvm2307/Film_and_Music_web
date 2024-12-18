@@ -17,4 +17,7 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Integer>
 
     @Query("SELECT c FROM CommentEntity c LEFT JOIN FETCH c.childComments WHERE c.film.film_id = :filmId AND c.parentComment IS NULL")
     List<CommentEntity> getTopLevelCommentsByFilmId(@Param("filmId") Integer filmId);
+
+    @Query("SELECT c FROM CommentEntity c WHERE c.parentComment.comment_id = :parentCommentId")
+    List<CommentEntity> findByParentCommentId(@Param("parentCommentId") Integer parentCommentId);
 }

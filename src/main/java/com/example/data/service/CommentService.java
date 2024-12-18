@@ -12,4 +12,6 @@ public interface CommentService {
     CommentEntity saveComment(CommentEntity comment);
 
     CommentEntity getCommentById(Integer commentId);
+
+    List<CommentEntity> getCommentsByParentCommentId(Integer parentCommentId);
 }

@@ -38,6 +38,17 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "Role")
     private WebEnum role;
+
+    @Column(name = "avatar_img")
+    private String avatar_img;
+
+    public String getAvatar_img() {
+        return avatar_img;
+    }
+
+    public void setAvatar_img(String avatar_img) {
+        this.avatar_img = avatar_img;
+    }
     
     public String getUsername() {
         return username;

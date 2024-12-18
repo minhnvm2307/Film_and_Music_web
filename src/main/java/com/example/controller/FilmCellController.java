@@ -1,6 +1,8 @@
 package com.example.controller;
 
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.data.entity.CommentEntity;
 import com.example.data.entity.FilmEntity;
@@ -18,8 +21,6 @@ import com.example.data.model.CommentRequestDTO;
 import com.example.data.service.CommentService;
 import com.example.data.service.FilmService;
 import com.example.data.service.UserService;
-
-
 
 
 @Controller
@@ -33,6 +34,24 @@ public class FilmCellController {
     @Autowired
     private CommentService commentService;
 
+    /*
+     * This method is used to display the film-cell page. 
+     * When user clicks on a film, this method is called and shows the film (Video).
+     * It takes in the username and film_id as parameters.
+     * It returns the film-cell.html page.
+     * 
+     * This page contains atrributes:
+     * - FilmCell
+     * - FilmsWithRating
+     * - User
+     * - Comments (the top level comments - comments with no parent comment)
+     * - ChildCommentsMap (map the parent comment ID to its child comments)
+     * 
+     * @Param username: The username of the user.
+     * @Param film_id: The id of the film.
+     * 
+     * @Return: The film-cell.html page.
+     */
     @GetMapping("/film/film-cell")
     // @RequestParam Integer id is the film_id
     public String filmCell(@RequestParam String username, @RequestParam Integer film_id,  Model model) {
@@ -42,11 +61,29 @@ public class FilmCellController {
 
         model.addAttribute("User", userService.getUserByUsername(username));
 
-        model.addAttribute("Comments", commentService.getTopLevelCommentsByFilmId(film_id));
+        List<CommentEntity> topLevelComments = commentService.getTopLevelCommentsByFilmId(film_id);
+        model.addAttribute("Comments", topLevelComments);
+
+        Map<Integer, List<CommentEntity>> childCommentsMap = new HashMap<>();
+        for (CommentEntity topLevelComment : topLevelComments) {
+            List<CommentEntity> childComments = commentService.getCommentsByParentCommentId(topLevelComment.getComment_id());
+            childCommentsMap.put(topLevelComment.getComment_id(), childComments);
+        }
+        model.addAttribute("ChildCommentsMap", childCommentsMap);
         
         return "film/film-cell";
     }
 
+    /*
+     * This method is used to add a comment to a film.
+     * It takes in the commentDto as a parameter.
+     * It returns a ResponseEntity with a boolean value.
+     * The schema where the API called is in (comment.js) file.
+     * 
+     * @Param commentDto: The CommentRequestDTO object.
+     * 
+     * @Return: ResponseEntity with a boolean value.
+     */
     @PostMapping("/user/film/film-cell/comment")
     public ResponseEntity<Boolean> addComment(@RequestBody CommentRequestDTO commentDto) {
         // Print the commentDto to the console
@@ -65,6 +102,11 @@ public class FilmCellController {
             return ResponseEntity.badRequest().body(false);
         }
 
+        CommentEntity parentComment = commentService.getCommentById(commentDto.getParentCommentId());
+        if (parentComment != null) {
+            System.err.println("Can not find parent comment!!");
+        }
+
         // Create a new CommentEntity
         CommentEntity commentEntity = new CommentEntity();
         commentEntity.setUser(user);
@@ -72,13 +114,33 @@ public class FilmCellController {
         commentEntity.setComment_text(commentDto.getCommentText());
         commentEntity.setType(commentDto.getType());
         commentEntity.setTime_rated(commentDto.getTimeRated());
-        commentEntity.setParentComment(null);
+        commentEntity.setParentComment(commentService.getCommentById(commentDto.getParentCommentId()));
 
         commentService.saveComment(commentEntity);
 
         return ResponseEntity.ok(true);
     }
 
+    /*
+     * This method is used to get the child comments of a comment.
+     * It takes in the commentId as a parameter.
+     * It returns the film-cell.html page.
+     * 
+     * This page contains atrributes:
+     * - ChildComments
+     * 
+     * @Param commentId: The id of the comment.
+     * 
+     * @Return: The film-cell.html page.
+     */
+    @Deprecated
+    @GetMapping("user/film/film-cell/comment/replies")
+    @ResponseBody
+    public String getChildsComment(@RequestParam Integer commentId, Model model) {
+        List<CommentEntity> commentEntities = commentService.getCommentsByParentCommentId(commentId);
 
-    
+        model.addAttribute("ChildComments", commentEntities);
+
+        return "film/film-cell";
+    }    
 }

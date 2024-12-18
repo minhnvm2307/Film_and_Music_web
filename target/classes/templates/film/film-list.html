@@ -37,8 +37,6 @@
                  th:if="${iterStat.index < 5}"
                  th:data-rating="${film[4]}">
 
-                <i class="fas fa-play"></i>
-
                 <img class="img-background" th:src="${film[2]}" th:alt="${film[1]}">
 
                 <div class="poster-content">
@@ -54,12 +52,12 @@
                     <span class="poster-ratedDetail" th:text="${film[4]} + ' / 5'"></span>
                 </div>
             </div>
-        </div>
-        
-        <div class="pagination-controls">
-            <i id="prev-btn" class="fa-solid fa-arrow-left"></i>
-            <i id="next-btn" class="fa-solid fa-arrow-right"></i>
+            <div class="pagination-controls">
+                <i id="prev-btn" class="fa-solid fa-arrow-left"></i>
+                <i id="next-btn" class="fa-solid fa-arrow-right"></i>
+            </div>
         </div>
     </nav>
+    
 </body>
 </html>

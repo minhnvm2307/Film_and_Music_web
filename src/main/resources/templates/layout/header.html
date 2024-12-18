@@ -6,7 +6,7 @@
             <a href="#" class="active">
                 <span>Popular</span>
             </a>
-            <a href="http://localhost:8080/film/film-page">
+            <a th:href="@{/film/film-page(username=${User.username})}">
                 <span>Films</span>
             </a>
             <a href="#">
@@ -26,8 +26,8 @@
             </a>
             <div class="user-info">
                 <span th:text="${User.name}"></span>
-                <a th:href="@{/index}" title="MINH-FILM">
-                    <img th:src="@{/assets/images/logo.png}" alt="Logo" class="avatar" />
+                <a th:href="@{/index(username=${User.username})}" title="MINH-FILM">
+                    <img th:src="${User.avatar_img}" th:alt="${User.name}" class="avatar" />
                 </a>
             </div>
             <form id="form-search" class="search-form">
