@@ -5,7 +5,7 @@
         <h1 id="title-section">Recommended Films</h1>
 
         <div id="film-container" class="film-container">
-            <div th:each="film : ${FilmsWithRating}" class="film-card" th:attr="data-film-id=${film[0]}" onclick="playTrailer(this)">
+            <div th:each="film : ${FilmsWithRating}" class="film-card" th:attr="data-film-id=${film[0]}">
                 <div class="img-overlay">
                     <img th:src="${film[2]}" th:alt="${film[1]}">
                 </div>

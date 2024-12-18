@@ -12,12 +12,12 @@ import com.example.data.entity.CommentEntity;
 @Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Integer> {
     
-    @Query("SELECT c FROM CommentEntity c WHERE c.film.film_id = :filmId AND c.type = 'film'")
+    @Query("SELECT c FROM CommentEntity c WHERE c.film.film_id = :filmId AND c.type = 'film' ORDER BY c.time_rated DESC")
     List<CommentEntity> getCommentsByFilmId(@Param("filmId") Integer filmId);
 
-    @Query("SELECT c FROM CommentEntity c LEFT JOIN FETCH c.childComments WHERE c.film.film_id = :filmId AND c.parentComment IS NULL")
+    @Query("SELECT c FROM CommentEntity c LEFT JOIN FETCH c.childComments WHERE c.film.film_id = :filmId AND c.parentComment IS NULL ORDER BY c.time_rated DESC")
     List<CommentEntity> getTopLevelCommentsByFilmId(@Param("filmId") Integer filmId);
 
-    @Query("SELECT c FROM CommentEntity c WHERE c.parentComment.comment_id = :parentCommentId")
+    @Query("SELECT c FROM CommentEntity c WHERE c.parentComment.comment_id = :parentCommentId ORDER BY c.time_rated DESC")
     List<CommentEntity> findByParentCommentId(@Param("parentCommentId") Integer parentCommentId);
 }
