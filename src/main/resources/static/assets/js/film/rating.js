@@ -2,15 +2,18 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.main-poster').forEach(poster => {
         const rating = parseFloat(poster.dataset.rating) || 0;
 
-        modifyRating(poster, rating);
+        modifyPosterRating(poster, rating);
     });
 });
 
-function modifyRating(poster, rating) {
-    // Lấy tất cả các ngôi sao trong poster hiện tại
-    const starIcons = poster.querySelectorAll('.poster-rating .fa-star');
+/*
+* This method will modify the rating of a poster
+* @param poster: the poster element
+* @param rating: the rating of the poster
+*/
+function modifyPosterRating(poster, rating) {
+    const starIcons = poster.querySelectorAll('.poster-content .poster-rating .fa-star');
 
-    // Chuyen icon fas fa-star thành fa-regular fa-star nếu index > rating
     starIcons.forEach((icon, index) => {
         if (index < rating) {
             icon.classList.add('fas');
@@ -22,7 +25,11 @@ function modifyRating(poster, rating) {
     });
 }
 
-
+/*
+* This method will modify the rating of a film small cell
+* @param card: the film small cell element
+* @param rating: the rating of the film
+*/
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.film-overlay').forEach(card => {
         const rating = parseFloat(card.dataset.rating) || 0;
@@ -32,10 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function modifyRating(card, rating) {
-    // Lấy tất cả các ngôi sao trong poster hiện tại
     const starIcons = card.querySelectorAll('.film-rating .fa-star');
 
-    // Chuyen icon fas fa-star thành fa-regular fa-star nếu index > rating
     starIcons.forEach((icon, index) => {
         if (index < rating) {
             icon.classList.add('fas');
@@ -45,4 +50,14 @@ function modifyRating(card, rating) {
             icon.classList.remove('fas');
         }
     });
+}
+
+/*
+* Rating a film cell
+* @param filmId: the id of the film
+* @param userId: the id of the user
+* @param rating: the rating of the film
+*/
+function ratingFilm() {
+    const userId = document
 }

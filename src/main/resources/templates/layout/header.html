@@ -22,7 +22,7 @@
                 <span>Collections</span>
             </a>
             <a href="#">
-                <span>Annoucements</span>
+                <span>Announcements</span>
             </a>
             <div class="user-info">
                 <span th:text="${User.name}"></span>
@@ -51,5 +51,9 @@
         </div>
         
     </nav>
+
+    <script th:inline="javascript">
+        localStorage.setItem("currentUser", JSON.stringify(/*[[${User}]]*/));
+    </script>
 </body>
 </html>

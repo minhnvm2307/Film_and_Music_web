@@ -2,6 +2,7 @@ package com.example.data.service;
 
 import java.util.List;
 import com.example.data.entity.FilmEntity;
+import com.example.data.entity.StarRatedEntity;
 
 public interface FilmService {
 
@@ -22,4 +23,7 @@ public interface FilmService {
 
     // Get the Film default
     FilmEntity getFilmByIdDefault(Integer id);
+
+    // Rate the Film
+    StarRatedEntity rateFilm(Integer filmId, Integer userId, Integer rating);
 }

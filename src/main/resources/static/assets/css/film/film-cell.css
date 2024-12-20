@@ -224,5 +224,42 @@ body {
     color: #313033;
     font-size: 12px;
   }
+
+ /* Rating */
+.rating-box {
+    /* display: flex; */
+    align-items: center;
+    gap: 5px;
+    margin-left: 30px;
+}
+
+.rating-buttons {
+    display: flex;
+}
+
+.rating-buttons input {
+    display: none;
+}
+
+.rating-buttons label {
+    cursor: pointer;
+    color: #ccc;
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+}
+
+.rating-buttons input:checked ~ label {
+    color: #ffe655;
+    scale: 1.1;
+}
+
+.rating-buttons label:hover {
+  color: #FFD700; /* Màu vàng khi rê chuột qua */
+}
+
+.rating-buttons label:hover ~ label {
+  color: #FFD700; /* Màu vàng khi rê chuột qua sao tiếp theo */
+}
+
   
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.data.entity.CommentEntity;
 import com.example.data.entity.FilmEntity;
+import com.example.data.entity.StarRatedEntity;
 import com.example.data.entity.UserEntity;
 import com.example.data.model.CommentRequestDTO;
 import com.example.data.service.CommentService;
@@ -120,6 +121,24 @@ public class FilmCellController {
 
         return ResponseEntity.ok(true);
     }
+
+    /*
+     * This method is used to rate a film.
+     * 
+     * @Param filmId: The id of the film.
+     * @Param userId: The id of the user.
+     * @Param rateNumber: The rating number.
+     */
+    @GetMapping("user/film/film-cell/rating")
+    public ResponseEntity<Boolean> ratingFilmCell (@RequestParam Integer filmId, @RequestParam Integer userId, @RequestParam Integer rateNumber) {
+        StarRatedEntity newStarRated = filmService.rateFilm(filmId, userId, rateNumber);
+        if (newStarRated == null) {
+            return ResponseEntity.badRequest().body(false);
+        }
+        
+        return ResponseEntity.ok(true);
+    }
+    
 
     /*
      * This method is used to get the child comments of a comment.

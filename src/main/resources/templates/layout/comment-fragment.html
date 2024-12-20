@@ -101,7 +101,7 @@
             <br id="filled-to-grid" style="display: none;">
 
             <!-- Replies -->
-            <div class="replies-container">
+            <div class="replies-container" th:if="${ChildCommentsMap[comment.comment_id].size() > 0}">
                 <div class="comment-container" th:each="childComment : ${ChildCommentsMap[comment.comment_id]}">
                     <div class="user">
                         <div class="user-pic">
@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     <p class="comment-content" th:text="${childComment.comment_text}"></p>
-                    <hr>
+                    <br>
                 </div>
             </div>
 

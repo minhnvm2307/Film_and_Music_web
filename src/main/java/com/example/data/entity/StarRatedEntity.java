@@ -33,6 +33,28 @@ public class StarRatedEntity {
     @JsonIgnore
     private FilmEntity film;
 
+    @Column(name = "song_id")
+    private Integer song_id;
+
+    @Column(name = "user_id")
+    private int user_id;
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getSong_id() {
+        return song_id;
+    }
+
+    public void setSong_id(Integer song_id) {
+        this.song_id = song_id;
+    }
+
     public int getStarRatedId() {
         return starRatedId;
     }
