@@ -1,5 +1,6 @@
 package com.example.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -31,13 +32,25 @@ public class StarRatedEntity {
     @ManyToOne
     @JoinColumn(name = "film_id", nullable = true)
     @JsonIgnore
+    @JsonBackReference
     private FilmEntity film;
 
-    @Column(name = "song_id")
-    private Integer song_id;
+    @ManyToOne
+    @JoinColumn(name = "song_id", nullable = true)
+    @JsonIgnore
+    @JsonBackReference
+    private SongEntity song;
 
     @Column(name = "user_id")
     private int user_id;
+
+    public SongEntity getSong() {
+        return song;
+    }
+
+    public void setSong(SongEntity song) {
+        this.song = song;
+    }
 
     public int getUser_id() {
         return user_id;
@@ -45,14 +58,6 @@ public class StarRatedEntity {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
-    }
-
-    public int getSong_id() {
-        return song_id;
-    }
-
-    public void setSong_id(Integer song_id) {
-        this.song_id = song_id;
     }
 
     public int getStarRatedId() {

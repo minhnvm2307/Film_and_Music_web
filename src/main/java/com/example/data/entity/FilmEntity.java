@@ -55,7 +55,27 @@ public class FilmEntity {
     )
     private List<FilmCategoryEntity> categories = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(
+        name = "film_actor",
+        joinColumns = @JoinColumn(name = "film_id"),
+        inverseJoinColumns = @JoinColumn(name = "actor_id")
+    )
+    private List<ActorEntity> actors = new ArrayList<>();
+
+
+
+
+    
     // Getters and Setters
+    public List<ActorEntity> getActors() {
+        return new ArrayList<>(actors);
+    }
+
+    public void setActors(List<ActorEntity> actors) {
+        this.actors = actors;
+    }
+
     public List<FilmCategoryEntity> getCategories() {
         return new ArrayList<>(categories);
     }

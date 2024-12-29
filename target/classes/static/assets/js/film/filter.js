@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (categoryId !== '') resetButton.style.display = 'block';
 
         // Build URL for API call
-        let url = '/user/film/filter';
-        if (categoryId) url += `?categoryId=${categoryId}`;
+        const url = categoryId ? `/user/film/filter?categoryId=${encodeURIComponent(categoryId)}` : '/user/film/filter';
 
         try {
             const response = await fetch(url);
@@ -32,10 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('Films by category:', categoryId, films);
                 updateFilmCards(films);
             } else {
-                console.error('Error fetching films:', response.status);
+                showError(`Error fetching films: ${response.status}`);
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error fetching films:', error);
+            showError('Error fetching films. Please try again later.');
         }
     });
 
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Update Film Cards Display
     function updateFilmCards(films) {
-        const filmIds = films.map(film => film.film_id); // API provides film IDs
+        const filmIds = films.map(film => film.filmId); // API provides film IDs
         const cards = document.querySelectorAll('.film-card');
 
         cards.forEach(card => {
@@ -80,6 +80,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function showError(message) {
+        const errorElement = document.getElementById('error');
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+    }
+
+    /*
+    * Sort film cards by rating
+    * */
     function sortFilmByRating() {
         const cards = document.querySelectorAll('.film-card');
         const sortedCards = Array.from(cards).sort((a, b) => {

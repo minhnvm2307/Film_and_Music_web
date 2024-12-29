@@ -3,6 +3,8 @@
     xmlns:th="http://www.thymeleaf.org">
 <body>
     <div th:fragment="filter-board" class="filter-container">
+        <link th:href="@{/assets/css/filter-menu.css}" rel="stylesheet" />
+        
         <form method="get">
             <label for="category">Category:</label>
             <select id="category" name="categoryId">
@@ -21,6 +23,8 @@
             </select>
             <button type="button" id="sortButton">Sort</button>
         </form>
+
+        <script th:src="@{/assets/js/film/filter.js}"></script>
     </div>
 </body>
 </html>

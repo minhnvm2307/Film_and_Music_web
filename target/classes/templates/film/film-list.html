@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
     <nav th:fragment="film-list">
+        <link th:href="@{/assets/css/film/film-list.css}" rel="stylesheet" />
+
         <h1 id="title-section">Recommended Films</h1>
 
         <div id="film-container" class="film-container">
@@ -29,9 +31,13 @@
                 </div>
             </div>
         </div>
+
+        <script th:src="@{/assets/js/film/access-film-cell.js}"></script>
     </nav>
 
     <nav th:fragment="top-films" class="slide-wrapper">
+        <link th:href="@{/assets/css/film/poster-film.css}" rel="stylesheet" />
+
         <div class="main-poster-container">
             <div class="main-poster" th:each="film, iterStat : ${FilmsWithRating}"
                  th:if="${iterStat.index < 5}"
@@ -57,6 +63,8 @@
                 <i id="next-btn" class="fa-solid fa-arrow-right"></i>
             </div>
         </div>
+
+        <script th:src="@{/assets/js/film/pagination.js}"></script>
     </nav>
     
 </body>

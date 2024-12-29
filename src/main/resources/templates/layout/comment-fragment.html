@@ -19,6 +19,8 @@
     *
     */ 
     <div class="comment-card" th:fragment="comment-fragment">
+        <link th:href="@{/assets/css/comment.css}" rel="stylesheet" />
+
         <span class="title">Comments</span>
 
         <div class="text-box" th:data-film-id="${FilmCell[0]}" th:data-user-id="${User.user_id}">
@@ -119,7 +121,9 @@
                 </div>
             </div>
 
-        </div>        
+        </div>   
+        
+        <script th:src="@{/assets/js/comment.js}"></script>
     </div>
     
 </body>

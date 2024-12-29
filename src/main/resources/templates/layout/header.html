@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
     <nav th:fragment="header" class="header-menu" th:attr="data-username=${User.username}">
+        <link th:href="@{/assets/css/top-menu.css}" rel="stylesheet" />
+        
         <div class="top-menu">
             <a href="#" class="active">
                 <span>Popular</span>
@@ -49,11 +51,10 @@
               </label>
             </div>
         </div>
-        
-    </nav>
 
-    <script th:inline="javascript">
-        localStorage.setItem("currentUser", JSON.stringify(/*[[${User}]]*/));
-    </script>
+
+        <script th:src="@{/assets/js/themeSwitch.js}"></script>
+        <script th:src="@{/assets/js/layout_fragments/top-menu.js}"></script>
+    </nav>
 </body>
 </html>

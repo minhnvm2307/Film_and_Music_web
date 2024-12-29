@@ -1,19 +1,21 @@
 package com.example.data.service.seviceImplement;
 
-import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import com.example.data.entity.CommentEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.data.entity.FilmEntity;
 import com.example.data.entity.StarRatedEntity;
 import com.example.data.entity.WebEnum;
+import com.example.data.model.FilmDTO;
+import com.example.data.model.converter.FilmConverter;
 import com.example.data.repository.FilmRepository;
 import com.example.data.repository.StarRatedRepository;
-import com.example.data.service.CommentService;
 import com.example.data.service.FilmService;
-
-import org.hibernate.sql.ast.tree.expression.Star;
-import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
 
 @Service
 public class FilmImplement implements FilmService {
@@ -36,8 +38,12 @@ public class FilmImplement implements FilmService {
         return filmRepository.getFilmsWithRatings();
     }
 
-    public List<FilmEntity> getFilmsByCategory(Integer categoryId) {
-        return filmRepository.findFilmsByCategoryId(categoryId);
+    @Transactional(readOnly = true)
+    @Override
+    public List<FilmDTO> getFilmsByCategory(Integer categoryId) {
+        List<FilmEntity> filmEntities = filmRepository.findFilmsByCategoryId(categoryId);
+        
+        return FilmConverter.convertFromEntityList(filmEntities);
     }
 
     public Object getFilmById(Integer id) {
@@ -49,14 +55,26 @@ public class FilmImplement implements FilmService {
     }
 
     public StarRatedEntity rateFilm(Integer filmId, Integer userId, Integer rating) {
+        // Check if the user has already rated the film
+        StarRatedEntity existingRating = starRatedRepository.findByUserIDAndFilmID(userId, filmId);
+
         FilmEntity film = filmRepository.findById(filmId).orElse(null);
         StarRatedEntity newRating = new StarRatedEntity();
         newRating.setFilm(film);
         newRating.setUser_id(userId);
         newRating.setStarNumber(rating);
         newRating.setType(WebEnum.film);
-        newRating.setSong_id(null);
+        newRating.setSong(null);
+
+        if (existingRating != null) {
+            newRating.setStarRatedId(existingRating.getStarRatedId());
+        }
         
         return starRatedRepository.save(newRating);
     }
+
+    public StarRatedEntity getRatingByUser(Integer filmId, Integer userId) {
+        return starRatedRepository.findByUserIDAndFilmID(userId, filmId);
+    }
+    
 }

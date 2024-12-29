@@ -19,6 +19,7 @@ import com.example.data.entity.FilmEntity;
 import com.example.data.entity.StarRatedEntity;
 import com.example.data.entity.UserEntity;
 import com.example.data.model.CommentRequestDTO;
+import com.example.data.service.ActorService;
 import com.example.data.service.CommentService;
 import com.example.data.service.FilmService;
 import com.example.data.service.UserService;
@@ -35,6 +36,9 @@ public class FilmCellController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private ActorService actorService;
+
     /*
      * This method is used to display the film-cell page. 
      * When user clicks on a film, this method is called and shows the film (Video).
@@ -45,6 +49,7 @@ public class FilmCellController {
      * - FilmCell
      * - FilmsWithRating
      * - User
+     * - Actors
      * - Comments (the top level comments - comments with no parent comment)
      * - ChildCommentsMap (map the parent comment ID to its child comments)
      * 
@@ -61,6 +66,8 @@ public class FilmCellController {
         model.addAttribute("FilmsWithRating", filmService.getFilmsWithRatings());
 
         model.addAttribute("User", userService.getUserByUsername(username));
+
+        model.addAttribute("Actors", actorService.findByFilmId(film_id));
 
         List<CommentEntity> topLevelComments = commentService.getTopLevelCommentsByFilmId(film_id);
         model.addAttribute("Comments", topLevelComments);
@@ -129,14 +136,32 @@ public class FilmCellController {
      * @Param userId: The id of the user.
      * @Param rateNumber: The rating number.
      */
-    @GetMapping("user/film/film-cell/rating")
+    @PostMapping("user/film/film-cell/rating")
     public ResponseEntity<Boolean> ratingFilmCell (@RequestParam Integer filmId, @RequestParam Integer userId, @RequestParam Integer rateNumber) {
         StarRatedEntity newStarRated = filmService.rateFilm(filmId, userId, rateNumber);
-        if (newStarRated == null) {
+        if (newStarRated == null || newStarRated.getStarNumber() != rateNumber) {
             return ResponseEntity.badRequest().body(false);
         }
-        
+
         return ResponseEntity.ok(true);
+    }
+
+    /*
+     * Get the rating of a film by a user.
+     * @Param filmId: The id of the film.
+     * @Param userId: The id of the user.
+     * 
+     * @Return: The rating of the film by the user.
+     */
+    @GetMapping("user/film/film-cell/rated")
+    @ResponseBody
+    public Integer getRated (@RequestParam Integer filmId, @RequestParam Integer userId) {
+        StarRatedEntity starRated = filmService.getRatingByUser(filmId, userId);
+        if (starRated == null) {
+            return 0;
+        }
+
+        return starRated.getStarNumber();
     }
     
 

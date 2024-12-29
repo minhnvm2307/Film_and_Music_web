@@ -51,13 +51,3 @@ function modifyRating(card, rating) {
         }
     });
 }
-
-/*
-* Rating a film cell
-* @param filmId: the id of the film
-* @param userId: the id of the user
-* @param rating: the rating of the film
-*/
-function ratingFilm() {
-    const userId = document
-}

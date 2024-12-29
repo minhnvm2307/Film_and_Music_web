@@ -2,6 +2,7 @@ package com.example.data.model;
 
 import java.sql.Timestamp;
 
+import com.example.data.entity.CommentEntity;
 import com.example.data.entity.WebEnum;
 
 public class CommentRequestDTO {

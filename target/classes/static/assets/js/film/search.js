@@ -1,3 +1,6 @@
+import {switchToFilm} from 'js/pageSwitcher.js';
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('menu-search-button');

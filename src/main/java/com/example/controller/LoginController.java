@@ -21,12 +21,8 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<Boolean> loginAuthentication(@RequestParam String username, @RequestParam String password) {
-        System.out.println("Username: " + username);
-        System.out.println("Password: " + password);
-
         LoginRequest loginRequest = new LoginRequest(username, password);
         boolean isAuthentize =  userService.LoginRequestAuthentication(loginRequest);
-        System.out.println("isAuthentize: " + isAuthentize);
 
         return ResponseEntity.ok(isAuthentize);    
     }

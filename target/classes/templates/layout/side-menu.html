@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="side-menu">
+    <link th:href="@{/assets/css/sidebar.css}" rel="stylesheet" />
+
     <nav id="sidebar">
         <div class="sidebar">
             <a th:href="@{/index(username=${User.username})}" class="active">
@@ -11,7 +13,7 @@
                 <i class="fas fa-film"></i>
                 <span>Cinema</span>
             </a>
-            <a href="#">
+            <a th:href="@{/music/music-page(username=${User.username})}">
                 <i class="fas fa-music"></i>
                 <span>Music</span>
             </a>
@@ -23,7 +25,7 @@
                 <i class="fas fa-heart"></i>
                 <span>Favorites</span>
             </a>
-            <a href="#">
+            <a th:href="@{/user/profile(username=${User.username})}">
                 <i class="fas fa-circle-user"></i>
                 <span>Profile</span>
             </a>
@@ -33,5 +35,7 @@
             </a>
         </div>
     </nav>
+
+    <script th:src="@{/assets/js/layout_fragments/side-menu.js}"></script>
 </body>
 </html>

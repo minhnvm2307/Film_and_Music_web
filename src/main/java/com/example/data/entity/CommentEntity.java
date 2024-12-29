@@ -49,10 +49,23 @@ public class CommentEntity {
     @JoinColumn(name = "film_id", nullable = true)
     @JsonIgnore
     private FilmEntity film;
+
+    @ManyToOne
+    @JoinColumn(name = "song_id", nullable = true)
+    @JsonIgnore
+    private SongEntity song;
     
     @OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<CommentEntity> childComments = new ArrayList<>();
+
+    public SongEntity getSongEntity() {
+        return song;
+    }
+
+    public void setSongEntity(SongEntity song) {
+        this.song = song;
+    }
 
     public int getComment_id() {
         return comment_id;
