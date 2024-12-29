@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="playing-card" id="playing-card" class="playing-card">
+        <link th:href="@{/assets/css/music/playing-card.css}" rel="stylesheet" />
+    
+        <div class="playing-card-content">
+            <!-- Poster -->
+            <div class="poster">
+                <img id="playing-poster" src="" alt="Poster" />
+            </div>
+    
+            <!-- Song Details -->
+            <div class="song-details">
+                <h4 id="playing-song-name" class="song-name">Song Name</h4>
+                <p id="playing-singers" class="singers">Singer Name</p>
+            </div>
+    
+            <!-- Audio Player -->
+            <audio id="audio-player" controls>
+                <source id="audio-source" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            
+            <!-- Close Button -->
+            <button id="close-button" class="close-button">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    
+        <script th:src="@{/assets/js/music/play-audio.js}"></script>
+    </div>    
+    
+</body>
+</html>

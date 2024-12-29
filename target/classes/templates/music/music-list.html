@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <nav th:fragment="song-list">
+        <link th:href="@{/assets/css/music/music-list.css}" rel="stylesheet" />
+
+        <h1 id="title-section">Recommended Music</h1>
+
+        <div id="music-container" class="music-container">
+            <div class="music-card" th:each="song : ${Songs}">
+                <div class="poster-wrapper">
+                    <img th:src="${song.posterImg}" class="poster-img">
+
+                    <button class="play-btn"
+                    th:data-song-name="${song.songName}" 
+                    th:data-singers="${song.singers[0].singerName}"
+                    th:data-song-poster="${song.posterImg}" 
+                    th:data-audio-src="'/assets/audio/' + ${song.audioLink}"
+                    ><i class="fas fa-play"></i></button>
+                    
+                </div>
+                <div class="music-info">
+                    <div class="info-left">
+                        <h3 th:text="${song.songName}" class="song-name"></h3>
+                        <p th:each="singer, iterStat : ${song.singers}"
+                           th:text="${singer.singerName}"
+                           th:if="${iterStat.index > 0}"
+                           th:append="', ' + ${singer.singerName}"></p>
+                        <p th:each="singer, iterStat : ${song.singers}"
+                           th:text="${singer.singerName}"
+                           th:if="${iterStat.index == 0}"></p>
+                    </div>
+                    <div class="info-right">
+                        <button class="like-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="save-btn"><i class="fa-regular fa-bookmark"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- <script th:src="@{/assets/js/music/access-music-cell.js}"></script> -->
+    </nav>
+</body>
+</html>
