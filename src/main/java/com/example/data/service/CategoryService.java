@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.example.data.entity.*;
 
-public interface FilmCategoryService {
+public interface CategoryService {
     // Get the list of Film Categories
     List<FilmCategoryEntity> findAll();
 
