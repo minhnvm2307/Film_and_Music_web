@@ -2,18 +2,27 @@ package com.example.data.model;
 
 import java.sql.Timestamp;
 
-import com.example.data.entity.CommentEntity;
 import com.example.data.entity.WebEnum;
 
 public class CommentRequestDTO {
     private int userId;
     private int filmId;
+    private int songId;
     private String commentText;
     private WebEnum type;
     private int parentCommentId;
     private Timestamp timeRated;
 
     // Getters and Setters
+
+    public int getSongId() {
+        return songId;
+    }
+
+    public void setSongId(int songId) {
+        this.songId = songId;
+    }
+
     public Timestamp getTimeRated() {
         return timeRated;
     }

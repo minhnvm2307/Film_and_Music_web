@@ -32,8 +32,14 @@ document.addEventListener('DOMContentLoaded', function () {
         audioPlayer.play();
     }
 
+    function pauseAudio() {
+        const audioPlayer = document.getElementById('audio-player');
+        audioPlayer.pause();
+    }
+
     // Close the playing card
     closeButton.addEventListener('click', function () {
         playingCard.classList.remove('show');
+        pauseAudio();
     });
 });

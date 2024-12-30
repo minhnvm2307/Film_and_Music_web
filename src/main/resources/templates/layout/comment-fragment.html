@@ -23,7 +23,7 @@
 
         <span class="title">Comments</span>
 
-        <div class="text-box" th:data-film-id="${FilmCell[0]}" th:data-user-id="${User.user_id}">
+        <div class="text-box" th:if="${FilmCell != null}" th:data-film-id="${FilmCell[0]}" th:data-user-id="${User.user_id}">
 
             <div class="box-container">
             <textarea placeholder="Add your comment"></textarea>

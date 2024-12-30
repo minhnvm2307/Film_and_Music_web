@@ -59,6 +59,14 @@ public class SongEntity {
     )
     private List<SingerEntity> singers = new ArrayList<>();
 
+    public List<SongCategoryEntity> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<SongCategoryEntity> categories) {
+        this.categories = categories;
+    }
+
     public List<SingerEntity> getSingers() {
         return singers;
     }

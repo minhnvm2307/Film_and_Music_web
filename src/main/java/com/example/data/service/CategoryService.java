@@ -9,4 +9,6 @@ public interface CategoryService {
     List<FilmCategoryEntity> findAll();
 
     List<SongCategoryEntity> findAllSongCategory();
+
+//    List<SongCategoryEntity> findSongCategoryBySongId(Integer songId);
 }

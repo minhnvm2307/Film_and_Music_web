@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table(name = "categories_of_song")
 public class SongCategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,14 @@ public class SongCategoryEntity {
     private Set<SongEntity> songs = new HashSet<>();
 
     // Getters and Setters
+    public Set<SongEntity> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(Set<SongEntity> songs) {
+        this.songs = songs;
+    }
+
     public int getCategoryId() {
         return categoryId;
     }

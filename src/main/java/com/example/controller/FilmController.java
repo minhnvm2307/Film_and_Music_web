@@ -15,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.example.data.model.FilmDTO;
 import com.example.data.model.converter.FilmConverter;
-import com.example.data.service.FilmCategoryService;
+import com.example.data.service.CategoryService;
 import com.example.data.service.FilmService;
 import com.example.data.service.UserService;
 
@@ -27,7 +27,7 @@ public class FilmController {
     private FilmService filmService;
 
     @Autowired
-    private FilmCategoryService filmCategoryService;
+    private CategoryService filmCategoryService;
 
     @Autowired
     private UserService userService;

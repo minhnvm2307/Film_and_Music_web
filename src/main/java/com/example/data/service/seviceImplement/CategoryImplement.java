@@ -7,12 +7,12 @@ import com.example.data.repository.FilmCategoryRepository;
 import com.example.data.repository.SongCategoryRepository;
 import com.example.data.entity.FilmCategoryEntity;
 import com.example.data.entity.SongCategoryEntity;
-import com.example.data.service.FilmCategoryService;
+import com.example.data.service.CategoryService;
 
 import java.util.List;
 
 @Service
-public class FilmCategoryImplement implements FilmCategoryService {
+public class CategoryImplement implements CategoryService {
 
     @Autowired
     private FilmCategoryRepository filmCategoryRepository;
@@ -27,5 +27,8 @@ public class FilmCategoryImplement implements FilmCategoryService {
     public List<SongCategoryEntity> findAllSongCategory() {
         return songCategoryRepository.findAll();
     }
-    
+
+//    public List<SongCategoryEntity> findSongCategoryBySongId(Integer songId) {
+//        return songCategoryRepository.findBySongId(songId);
+//    }
 }

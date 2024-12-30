@@ -17,6 +17,7 @@ public class SongConverter {
         newSongDTO.setPosterImg(songEntity.getPoster_img());
         newSongDTO.setAudioLink(songEntity.getAudio_link());
         newSongDTO.setSingers(SingerConverter.toDTOList(songEntity.getSingers()));
+        newSongDTO.setCategories(CategoryConveter.toDTOList(songEntity.getCategories()));
         return newSongDTO;
     }
 

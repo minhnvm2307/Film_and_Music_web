@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     initializeCardSelect();
-    initializePlayButton();
 });
 
 function initializeCardSelect() {

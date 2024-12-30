@@ -29,6 +29,14 @@ public class SongDTO {
     public SongDTO() {
     }
 
+    public List<CategoryDTO> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryDTO> categories) {
+        this.categories = categories;
+    }
+
     public List<SingerDTO> getSingers() {
         return singers;
     }

@@ -7,7 +7,7 @@
         <h1 id="title-section">Recommended Music</h1>
 
         <div id="music-container" class="music-container">
-            <div class="music-card" th:each="song : ${Songs}">
+            <div class="music-card" th:each="song : ${Songs}" th:attr="data-song-id=${song.songId}">
                 <div class="poster-wrapper">
                     <img th:src="${song.posterImg}" class="poster-img">
 
@@ -39,7 +39,7 @@
         </div>
         
         
-        <!-- <script th:src="@{/assets/js/music/access-music-cell.js}"></script> -->
+        <script th:src="@{/assets/js/music/access-music-cell.js}"></script>
     </nav>
 </body>
 </html>

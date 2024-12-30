@@ -1,10 +1,15 @@
+document.addEventListener('DOMContentLoaded', () => {
+    initializePlayButton();
+});
+
 function initializePlayButton() {
     const playButton = document.querySelector('.slider');
     const videoContainer = document.querySelector('.video-container');
     const video = document.querySelector('.film-video');
 
-    if (video === null || video.link === '') {
+    if (video === null || video.link === '' || video.link === null) {
         // Add an message if the video element is not found
+        console.log('Video element not found');
         videoContainer.innerHTML = '<h3>Video not found</h3>';
         console.error('Video element not found');
         return;
@@ -27,7 +32,11 @@ function playFilm() {
     } else {
         video.style.display = 'block';
         videoContainer.style.display = 'block';
-        video.play();
+        try {
+            video.play();
+        } catch (error) {
+            console.error('Failed to play the video', error);
+        }
     }
 }
 

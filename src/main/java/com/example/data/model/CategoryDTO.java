@@ -6,7 +6,8 @@ public class CategoryDTO {
     private String categoryDescription;
 
     // Getters and Setters
-
+    public CategoryDTO() {
+    }
 
     public CategoryDTO(int categoryId, String categoryName, String categoryDescription) {
         this.categoryId = categoryId;

@@ -19,8 +19,16 @@ public class CommentServiceImplement implements CommentService {
         return commentRepository.getCommentsByFilmId(filmId);
     }
 
+    public List<CommentEntity> getCommentsBySongId(Integer songId) {
+        return commentRepository.getCommentsBySongId(songId);
+    }
+
     public List<CommentEntity> getTopLevelCommentsByFilmId(Integer filmId) {
         return commentRepository.getTopLevelCommentsByFilmId(filmId);
+    }
+
+    public List<CommentEntity> getTopLevelCommentsBySongId(Integer songId) {
+        return commentRepository.getTopLevelCommentsBySongId(songId);
     }
 
     public CommentEntity saveComment(CommentEntity comment) {
