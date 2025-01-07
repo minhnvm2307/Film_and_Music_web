@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Songs Table -->
+    <div class="table-container" th:fragment="song-table">
+        <table class="songs-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>List of Singers</th>
+                    <th>Categories</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="song : ${Songs}">
+                    <td th:text="${song.songId}"></td>
+                    <td th:text="${song.songName}"></td>
+                    <td>
+                        <span th:each="singer, iterStat : ${song.singers}" 
+                              th:text="${singer.singerName} + ', '">
+                        </span>
+                    </td>
+                        
+                    <!-- Categories -->
+                    <td>
+                        <span th:each="category, iterStat : ${song.categories}" 
+                            th:text="${category.categoryName} + ', '">
+                        </span>
+                    </td>
+                    <td>
+                        <button class="edit-btn" th:onclick="'loadSongToForm(' + ${song.songId} + ')'">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="delete-btn" th:data-id="${song.songId}">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Singer Table -->
+    <div class="table-container" th:fragment="singer-table">
+        <table class="songs-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Avatar</th>
+                    <th>Name</th>
+                    <th>Date of birth</th>
+                    <th>Country</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="singer : ${Singers}">
+                    <td th:text="${singer.singerId}"></td>
+                    <td>
+                        <img th:src="@{${singer.avatarImg}}" alt="Avatar" style="width: 50px;"/>
+                    </td>
+                    <td th:text="${singer.singerName}"></td>
+                    <td th:text="${singer.dateOfBirth}"></td>
+                    <td th:text="${singer.country}"></td>
+                    <td th:text="${singer.description}"></td>
+                    <td>
+                        <button class="edit-btn" th:onclick="'loadSingerToForm(' + ${singer.singerId} + ')'">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="delete-btn" th:data-id="${singer.singerId}">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

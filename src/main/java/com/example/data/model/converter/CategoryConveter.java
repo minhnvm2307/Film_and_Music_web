@@ -11,6 +11,7 @@ public class CategoryConveter {
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setCategoryId(categoryEntity.getCategoryId());
         categoryDTO.setCategoryName(categoryEntity.getCategoryName());
+        categoryDTO.setCategoryDescription(categoryEntity.getDescription());
         return categoryDTO;
     }
 
@@ -18,6 +19,7 @@ public class CategoryConveter {
         SongCategoryEntity categoryEntity = new SongCategoryEntity();
         categoryEntity.setCategoryId(categoryDTO.getCategoryId());
         categoryEntity.setCategoryName(categoryDTO.getCategoryName());
+        categoryEntity.setDescription(categoryDTO.getCategoryDescription());
         return categoryEntity;
     }
 

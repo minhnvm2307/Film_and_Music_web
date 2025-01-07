@@ -19,9 +19,10 @@ public interface SongRepository extends JpaRepository<SongEntity, Integer> {
            "GROUP BY s.song_id")
     Object findBySongId(@Param("songId") Integer songId);
 
-    @Query("SELECT s.song_id AS songId, s.song_name AS songName, s.song_description AS songDescription, s.release_date AS releaseDate, s.poster_img AS posterImg, s.audio_link AS audioLink " +
-           "FROM SongEntity s " +
+    @Query("SELECT s FROM SongEntity s " +
            "Left JOIN s.categories c " +
            "WHERE c.categoryName = :categoryName")
     List<SongEntity> findSongByCategoryName(@Param("categoryName") String categoryName);
+
+    
 }

@@ -19,7 +19,7 @@
             <li class="playlist-item" th:each="song : ${Songs}" th:attr="data-song-id=${song.songId}">
                 <div class="playlist-rank" th:text="${song.songId}"></div>
                 <div class="playlist-poster">
-                    <img th:src="${song.posterImg}" alt="Song Poster" class="poster-img">
+                    <img th:src="${song.posterImg != '' ? song.posterImg : 'https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png'}" class="poster-img">
                 </div>
                 <div class="playlist-info">
                     <h4 class="song-title" th:text="${song.songName}"></h4>

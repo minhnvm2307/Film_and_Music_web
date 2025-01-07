@@ -22,4 +22,34 @@ public class SingerServiceImplement implements SingerService {
 
         return SingerConverter.toDTOList(entities);
     }
+
+    @Override
+    public List<SingerDTO> getAllSingers() {
+        List<SingerEntity> entities = singerRepository.findAll();
+
+        return SingerConverter.toDTOList(entities);
+    }
+
+    @Override
+    public SingerDTO findById(Integer singerId) {
+        SingerEntity entity = singerRepository.findById(singerId).get();
+
+        return SingerConverter.toDTO(entity);
+    }
+
+    @Override
+    public SingerDTO addSinger(SingerDTO singerDTO) {
+        SingerEntity entity = SingerConverter.toEntity(singerDTO);
+        entity = singerRepository.save(entity);
+
+        return SingerConverter.toDTO(entity);
+    }
+
+    @Override
+    public SingerDTO updateSinger(SingerDTO singerDTO) {
+        SingerEntity entity = SingerConverter.toEntity(singerDTO);
+        entity = singerRepository.save(entity);
+
+        return SingerConverter.toDTO(entity);
+    }
 }

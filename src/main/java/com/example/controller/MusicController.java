@@ -1,10 +1,10 @@
 package com.example.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.attoparser.dom.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.data.entity.CommentEntity;
-import com.example.data.entity.FilmEntity;
+import com.example.data.entity.SongCategoryEntity;
 import com.example.data.entity.UserEntity;
+import com.example.data.model.CategoryDTO;
 import com.example.data.model.CommentRequestDTO;
-import com.example.data.model.FilmDTO;
 import com.example.data.model.SongDTO;
 import com.example.data.model.converter.SongConverter;
 import com.example.data.service.CommentService;
@@ -76,10 +76,26 @@ public class MusicController {
         return songService.getAllSongs();
     }
 
-    @GetMapping("/music/song")
+    @GetMapping("/music/category")
     @ResponseBody
-    public Object songDetail(@RequestParam Integer songId) {
-        return songService.getSongById(songId);
+    public List<SongDTO> songDetail(@RequestParam Integer categoryId) {
+        List<SongDTO> songs = songService.getAllSongs();
+        CategoryDTO songCategory = songService.getCategoryById(categoryId);
+        List<SongDTO> res = new ArrayList<>();
+
+        for (SongDTO song : songs) {
+            if (song.getCategories().contains(songCategory)) {
+                res.add(song);
+            }
+        }
+
+        return res;
+    }
+
+    @GetMapping("/music/category-song")
+    @ResponseBody
+    public List<SongDTO> songDetail(@RequestParam String categoryName) {
+        return songService.getSongByCategoryName(categoryName);
     }
 
     @PostMapping("/user/music/music-cell/comment")

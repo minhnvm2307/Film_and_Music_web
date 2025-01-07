@@ -21,7 +21,7 @@ public class SongCategoryEntity {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<SongEntity> songs = new HashSet<>();
 

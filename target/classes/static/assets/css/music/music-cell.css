@@ -18,9 +18,19 @@
 .poster-img-cell {
     width: 170px;
     height: 170px;
-    border-radius: 10px;
+    border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .song-info {
@@ -35,6 +45,11 @@
 .song-info p {
     margin-top: 10px;
     font-size: 16px;
+}
+
+.song-info audio {
+    width: 100%;
+    margin-top: 20px;
 }
 
 .music-details {

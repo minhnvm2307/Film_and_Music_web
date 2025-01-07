@@ -27,8 +27,6 @@
                 <div class="song-info">
                     <h1 id="song-name" th:text="${Song.songName}"></h1>
                     <p id="song-description" th:text="${Song.songDescription}"></p>
-                </div>
-                <div class="audio-cell-wrapper">
                     <audio controls autoplay id="audio-cell" th:src="'/assets/audio/' + ${Song.audioLink}"></audio>
                 </div>
             </div>
@@ -39,7 +37,7 @@
                     <h3>Singers</h3>
                     <ul id="singer-list">
                         <li th:each="singer : ${Song.singers}">
-                            <img th:src="${singer.avatarImg}" alt="Singer Image" class="singer-img">
+                            <img th:src="${singer.avatarImg != '' ? singer.avatarImg : 'https://cdn4.iconfinder.com/data/icons/office-thick-outline/36/office-14-256.png'}" alt="Singer Image" class="singer-img">
                             <span th:text="${singer.singerName}"></span>
                         </li>
                     </ul>
@@ -63,11 +61,12 @@
     </div>
 
     <div class="container">
-        <div th:insert="~{layout/comment-fragment :: comment-fragment}"></div>
+        <div th:replace="~{layout/comment-fragment :: comment-fragment}"></div>
     </div>
 
     <footer th:replace="~{layout/footer :: footer}"></footer>
     
     <script th:src="@{/assets/js/music/access-music-cell.js}"></script>
+    <script th:src="@{/assets/js/music/play-continue.js}"></script>
 </body>
 </html>

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -34,7 +35,7 @@ public class SingerEntity {
     @Column(name = "avatar_img")
     private String avatar_img;
 
-    @ManyToMany(mappedBy = "singers")
+    @ManyToMany(mappedBy = "singers", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<SongEntity> songs = new HashSet<>();
 
