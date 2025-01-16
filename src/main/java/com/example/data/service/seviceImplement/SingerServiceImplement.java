@@ -52,4 +52,9 @@ public class SingerServiceImplement implements SingerService {
 
         return SingerConverter.toDTO(entity);
     }
+
+    @Override
+    public void deleteSinger(Integer singerId) {
+        singerRepository.deleteById(singerId);
+    }
 }

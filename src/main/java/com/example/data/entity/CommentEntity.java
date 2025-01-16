@@ -59,11 +59,11 @@ public class CommentEntity {
     @JsonIgnore
     private List<CommentEntity> childComments = new ArrayList<>();
 
-    public SongEntity getSongEntity() {
+    public SongEntity getSong() {
         return song;
     }
 
-    public void setSongEntity(SongEntity song) {
+    public void setSong(SongEntity song) {
         this.song = song;
     }
 

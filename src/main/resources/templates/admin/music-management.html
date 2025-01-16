@@ -9,6 +9,11 @@
     <link th:href="@{/assets/css/admin/music-management.css}" rel="stylesheet" />
 </head>
 <body>
+    <!-- Include the admin head menu -->
+    <div style="position: sticky; z-index: 4;">
+        <div th:replace="~{layout/admin-head-menu :: admin-head-menu}"></div>
+    </div>
+
     <div class="admin-container">
         <header>
             <h1>Manage Songs</h1>

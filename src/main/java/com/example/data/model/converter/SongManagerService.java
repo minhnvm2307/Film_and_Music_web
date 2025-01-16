@@ -29,4 +29,8 @@ public class SongManagerService {
         
         return song;
     }
+
+    public static SingerDTO convertSinger(Map<String, Object> singerData) {
+        return new ObjectMapper().convertValue(singerData, SingerDTO.class);
+    }
 }

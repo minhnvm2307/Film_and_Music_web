@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     replyButtons.forEach(replyButton => {
         replyButton.addEventListener('click', function () {
-            console.log('Reply button clicked');
             toggleReplyBox(replyButton);
         });
     });
@@ -44,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sendReplyButton = document.querySelectorAll('.send-reply-comment');
 
     sendButton.addEventListener('click', function () {
-        console.log('Send button clicked');
+        console.log('Send parent comment button clicked');
         sendComment();
     });
 
@@ -78,7 +77,19 @@ function sendComment() {
     // Get the comment text and user info
     const commentText = document.querySelector('textarea').value.trim();
     const userId = commentHolder.getAttribute('data-user-id');
-    const filmId = commentHolder.getAttribute('data-film-id');
+    const sectionType = commentHolder.getAttribute('data-section-type');
+    let filmId = null;
+    let songId = null;
+
+    let fetchUrl = '';
+
+    if (sectionType === 'film') {
+        filmId = commentHolder.getAttribute('data-section-id');
+        fetchUrl = '/user/film/film-cell/comment';
+    } else if (sectionType === 'song') {
+        songId = commentHolder.getAttribute('data-section-id');
+        fetchUrl = '/user/music/music-cell/comment';
+    }
 
     if (!commentText) {
         alert('Please enter a comment.');
@@ -89,14 +100,15 @@ function sendComment() {
     const commentData = {
         userId: userId,
         filmId: filmId,
+        songId: songId,
         commentText: commentText,
-        type: 'film',
+        type: sectionType,
         timeRated: new Date().toISOString(),
         parentCommentId: null
     };
 
     // Send the comment via POST request
-    fetch('/user/film/film-cell/comment', {
+    fetch(fetchUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -106,12 +118,10 @@ function sendComment() {
         .then(data => {
             if (data) {
                 alert('Add comment successful!');
+                location.reload();
             } else {
                 alert('Add comment failed, please try again :(');
             }
-        })
-        .then(() => {
-            location.reload();
         })
         .catch(error => console.error('Error:', error));
     }
@@ -142,8 +152,20 @@ function sendComment() {
         const replyHolder = replyButton.closest('.reply-box');
         const commentReplyText = replyHolder.querySelector('textarea').value.trim();
         const userId = commentHolder.getAttribute('data-user-id');
-        const filmId = commentHolder.getAttribute('data-film-id');
         const parentCommentId = replyHolder.getAttribute('data-parentcomment-id');
+        const sectionType = commentHolder.getAttribute('data-section-type');
+        let filmId = null;
+        let songId = null;
+
+        let fetchUrl = '';
+
+        if (sectionType === 'film') {
+            filmId = commentHolder.getAttribute('data-section-id');
+            fetchUrl = '/user/film/film-cell/comment';
+        } else if (sectionType === 'song') {
+            songId = commentHolder.getAttribute('data-section-id');
+            fetchUrl = '/user/music/music-cell/comment';
+        }
 
         if (!commentReplyText) {
             alert('Please enter a reply.');
@@ -154,14 +176,15 @@ function sendComment() {
         const commentData = {
             userId: userId,
             filmId: filmId,
+            songId: songId,
             commentText: commentReplyText,
-            type: 'film',
+            type: sectionType,
             timeRated: new Date().toISOString(),
             parentCommentId: parentCommentId
         };
 
         // Send the comment via POST request
-        fetch('/user/film/film-cell/comment', {
+        fetch(fetchUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -171,12 +194,10 @@ function sendComment() {
             .then(data => {
                 if (data) {
                     alert('Add comment successful!');
+                    location.reload();
                 } else {
                     alert('Add comment failed, please try again :(');
                 }
-            })
-            .then(() => {
-                location.reload();
             })
             .catch(error => console.error('Error:', error));
     }

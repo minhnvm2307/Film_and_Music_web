@@ -17,7 +17,7 @@
 
     <div class="side-menu" th:insert="~{layout/side-menu :: side-menu}"></div>
 
-    <div class="cell-page-container" style="display: flex; margin-top: 80px; margin-left: 70px; justify-content: center; gap: 0;">
+    <div class="cell-page-container" style="display: flex; margin-top: 80px; justify-content: evenly; gap: 0;">
 
         <div th:replace="~{music/music-top :: playlist}"></div>
 
@@ -27,7 +27,7 @@
                 <div class="song-info">
                     <h1 id="song-name" th:text="${Song.songName}"></h1>
                     <p id="song-description" th:text="${Song.songDescription}"></p>
-                    <audio controls autoplay id="audio-cell" th:src="'/assets/audio/' + ${Song.audioLink}"></audio>
+                    <audio controls id="audio-cell" th:src="'/assets/audio/' + ${Song.audioLink}"></audio>
                 </div>
             </div>
         
@@ -67,6 +67,6 @@
     <footer th:replace="~{layout/footer :: footer}"></footer>
     
     <script th:src="@{/assets/js/music/access-music-cell.js}"></script>
-    <script th:src="@{/assets/js/music/play-continue.js}"></script>
+    <!-- <script th:src="@{/assets/js/music/play-continue.js}"></script> -->
 </body>
 </html>

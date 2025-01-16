@@ -44,6 +44,11 @@ public class SongServiceImplement implements SongService {
     }
 
     @Override
+    public SongEntity findByIdDefault(Integer songId) {
+        return songRepository.findById(songId).get();
+    }
+
+    @Override
     public List<SongDTO> getSongByCategoryName(String categoryName) {
         List<SongEntity> songEntities = songRepository.findSongByCategoryName(categoryName);
         return SongConverter.convertToDTOList(songEntities);

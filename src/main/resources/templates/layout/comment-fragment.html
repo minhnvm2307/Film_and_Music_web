@@ -23,29 +23,24 @@
 
         <span class="title">Comments</span>
 
-        <div class="text-box"  th:data-user-id="${User.user_id}">
+        <div class="text-box" 
+            th:if="${FilmCell != null or Song != null}" 
+            th:data-section-id="${FilmCell != null ? FilmCell[0] : Song.SongId}"
+            th:data-section-type="${FilmCell != null ? 'film' : 'song'}"
+            th:data-user-id="${User.user_id}">
 
             <div class="box-container">
-            <textarea placeholder="Add your comment"></textarea>
-            <div>
-                <div class="formatting">
-                <button type="button">
-                    <i class="fa-solid fa-bold"></i>
-                </button>
-                <button type="button">
-                    <i class="fas fa-italic"></i>
-                </button>
-                <button type="button">
-                    <i class="fas fa-underline"></i>
-                </button>
-                <button type="button">
-                    <i class="fas fa-icons"></i>
-                </button>
-                <button type="submit" class="send" title="Send" id="send-comment">
-                    <i class="fas fa-arrow-up" style="color: #fff;"></i>
-                </button>
+                <textarea placeholder="Add your comment"></textarea>
+                <div>
+                    <div class="formatting">
+                        <button type="button">
+                            <i class="fas fa-icons"></i>
+                        </button>
+                        <button type="submit" class="send" title="Send" id="send-comment">
+                            <i class="fas fa-arrow-up" style="color: #fff;"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
 
@@ -68,7 +63,7 @@
                         <p th:text="${comment.time_rated}"></p>
                     </div>
                 </div>
-                <p class="comment-content" th:text="${comment.comment_text}"></p>
+                <div class="comment-content" th:utext="${comment.comment_text}"></div>
             </div>
             <br>
             <div>
@@ -116,7 +111,7 @@
                             <p th:text="${childComment.time_rated}"></p>
                         </div>
                     </div>
-                    <p class="comment-content" th:text="${childComment.comment_text}"></p>
+                    <div class="comment-content" th:utext="${childComment.comment_text}"></div>
                     <br>
                 </div>
             </div>

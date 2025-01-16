@@ -46,6 +46,7 @@ function loadSingerToForm(singerId) {
             document.getElementById('singer-name').value = singer.singerName;
             document.getElementById('singer-description').value = singer.description;
             document.getElementById('singer-date').value = singer.dateOfBirth;
+            document.getElementById('singer-country').value = singer.country;
             document.getElementById('singer-poster').value = singer.avatarImg;
 
             // Update poster preview

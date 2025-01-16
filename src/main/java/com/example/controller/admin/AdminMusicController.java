@@ -98,9 +98,16 @@ public class AdminMusicController {
         songService.deleteSong(songId);
         return "success";
     }    
-    
+
+    /*
+    * Music Management Page Components
+    * - Get all songs
+    * - Get all singers
+    * - Get all categories
+     */    
     @GetMapping("admin/music")
-    public String getMusicPage(Model model) {
+    public String getMusicPage(Model model, @RequestParam("username") String username) {
+        model.addAttribute("User", userService.getUserByUsername(username));
         model.addAttribute("Songs", songService.getAllSongs());
         model.addAttribute("Singers", singerService.getAllSingers());
         model.addAttribute("Categories", categoryService.findAllSongCategory());
@@ -117,7 +124,8 @@ public class AdminMusicController {
     */
 
     @GetMapping("admin/singer")
-    public String getSingerPage(Model model) {
+    public String getSingerPage(Model model, @RequestParam("username") String username) {
+        model.addAttribute("User", userService.getUserByUsername(username));
         model.addAttribute("Singers", singerService.getAllSingers());
         return "admin/singer-management";
     }
@@ -138,8 +146,23 @@ public class AdminMusicController {
     @PostMapping("admin/singer/add")
     @ResponseBody
     public String addSinger(@RequestBody Map<String, Object> singerData) {
-        SingerDTO singerDTO = new SingerDTO();
+        SingerDTO singerDTO = SongManagerService.convertSinger(singerData);
         singerService.addSinger(singerDTO);
+        return "success";
+    }
+
+    @PostMapping("admin/singer/update")
+    @ResponseBody
+    public String updateSinger(@RequestBody Map<String, Object> singerData) {
+        SingerDTO singerDTO = SongManagerService.convertSinger(singerData);
+        singerService.updateSinger(singerDTO);
+        return "success";
+    }
+
+    @PostMapping("admin/singer/delete")
+    @ResponseBody
+    public String deleteSinger(@RequestParam("singerId") int singerId) {
+        singerService.deleteSinger(singerId);
         return "success";
     }
 }

@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.data.entity.CommentEntity;
-import com.example.data.entity.SongCategoryEntity;
+import com.example.data.entity.SongEntity;
 import com.example.data.entity.UserEntity;
 import com.example.data.model.CategoryDTO;
 import com.example.data.model.CommentRequestDTO;
 import com.example.data.model.SongDTO;
-import com.example.data.model.converter.SongConverter;
 import com.example.data.service.CommentService;
 import com.example.data.service.SongService;
 import com.example.data.service.UserService;
@@ -103,7 +102,7 @@ public class MusicController {
         // Print the commentDto to the console
         System.out.println("Comment: " + commentDto.getCommentText());
         System.out.println("UserID: " + commentDto.getUserId());
-        System.out.println("FilmID: " + commentDto.getFilmId());
+        System.out.println("SongID: " + commentDto.getSongId());
 
 
         UserEntity user = userService.getUserById(commentDto.getUserId());
@@ -111,7 +110,7 @@ public class MusicController {
             return ResponseEntity.badRequest().body(false);
         }
 
-        SongDTO song = (SongDTO) songService.getSongById(commentDto.getSongId());
+        SongEntity song = songService.findByIdDefault(commentDto.getSongId());
         if (song == null) {
             return ResponseEntity.badRequest().body(false);
         }
@@ -124,8 +123,7 @@ public class MusicController {
         // Create a new CommentEntity
         CommentEntity commentEntity = new CommentEntity();
         commentEntity.setUser(user);
-        commentEntity.setFilm(null);
-        commentEntity.setSongEntity(SongConverter.convertToEntity(song));
+        commentEntity.setSong(song);
         commentEntity.setComment_text(commentDto.getCommentText());
         commentEntity.setType(commentDto.getType());
         commentEntity.setTime_rated(commentDto.getTimeRated());

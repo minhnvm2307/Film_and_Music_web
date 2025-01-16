@@ -14,4 +14,6 @@ public interface SingerService {
     public SingerDTO addSinger(SingerDTO singerDTO);
 
     public SingerDTO updateSinger(SingerDTO singerDTO);
+
+    public void deleteSinger(Integer singerId);
 }

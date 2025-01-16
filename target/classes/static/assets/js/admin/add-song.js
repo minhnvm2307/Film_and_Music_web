@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
             songDescription: document.getElementById('song-description').value.trim(),
             releaseDate: document.getElementById('song-date').value.trim(),
             posterImg: document.getElementById('song-poster').value.trim(),
-            audioLink: document.getElementById('audio-input').value.trim(),
+            audioLink: document.getElementById('audio-input').value.trim().split('\\').pop(), // Extract just the file name
             singers: document.getElementById('song-singers').value.split(',').map(id => ({ singerId: id.trim() })),
             categories: Array.from(document.querySelectorAll('#categories-checkbox-group input[type="checkbox"]:checked')).map(checkbox => ({
                 categoryId: checkbox.value
