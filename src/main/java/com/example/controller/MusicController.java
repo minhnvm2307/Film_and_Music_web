@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,18 +25,21 @@ import com.example.data.model.SongDTO;
 import com.example.data.service.CommentService;
 import com.example.data.service.SongService;
 import com.example.data.service.UserService;
+import com.example.storage.MusicStorage;
 
 @Controller
 public class MusicController {
-
-    @Autowired
     private SongService songService;
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private CommentService commentService;
+    private MusicStorage musicStorage;
+    
+    MusicController(SongService songService, UserService userService, CommentService commentService, MusicStorage musicStorage) {
+        this.songService = songService;
+        this.userService = userService;
+        this.commentService = commentService;
+        this.musicStorage = musicStorage;
+    }
 
     @GetMapping("/music/music-page")
     public String musicPage(@RequestParam String username, Model model) {
@@ -132,6 +136,19 @@ public class MusicController {
         commentService.saveComment(commentEntity);
 
         return ResponseEntity.ok(true);
+    }
+
+    @GetMapping("/user/music/save-state-playing-song")
+    @ResponseBody
+    public String saveStatePlayingSong(@RequestParam Integer songId, @RequestParam String pauseTime) {
+        LocalTime time = LocalTime.parse(pauseTime);
+        // Save the state of the playing song
+        musicStorage.setRecentlyPlayedSong(songId, time);
+
+        System.out.println("Song ID: " + musicStorage.getRecentlyPlayedSong().getSongId());
+        System.out.println("Pause Time: " + musicStorage.getPauseTime());
+
+        return "Success";
     }
     
 }

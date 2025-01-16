@@ -2,11 +2,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const playingCard = document.getElementById('playing-card');
     const playPauseButton = document.getElementById('play-pause-button');
     const closeButton = document.getElementById('close-button');
+    const nextButton = document.getElementById('forward-button');
+    const previousButton = document.getElementById('backward-button');
+
+    // Function to load the audio state from localStorage
+    const savedState = JSON.parse(localStorage.getItem('audioState'));
+
+    if (savedState) {
+        playingCard.classList.add('show');
+    }
 
     // Show the playing card when the play button is clicked
     document.querySelectorAll('.play-btn').forEach(button => {
         button.addEventListener('click', function () {
-            console.log('clicked');
+            console.log('clicked play button of music list');
 
             const songName = this.getAttribute('data-song-name');
             const singers = this.getAttribute('data-singers');
@@ -16,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('playing-singers').textContent = singers;
             document.getElementById('playing-poster').src = posterSrc;
 
-            playAudio.call(this);            
+            playAudio.call(this);
 
             playingCard.classList.add('show');
         });

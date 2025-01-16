@@ -18,15 +18,25 @@
             </div>
     
             <!-- Audio Player -->
-            <audio id="audio-player" controls>
-                <source id="audio-source" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            
-            <!-- Close Button -->
-            <button id="close-button" class="close-button">
-                <i class="fas fa-times"></i>
-            </button>
+            <div class="play-controller">
+                <button id="backward-button" class="play-control-button">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+
+                <audio id="audio-player" controls>
+                    <source id="audio-source" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+
+                <button id="forward-button" class="play-control-button">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+                
+                <!-- Close Button -->
+                <button id="close-button" class="play-control-button">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
     
         <script th:src="@{/assets/js/music/play-audio.js}"></script>

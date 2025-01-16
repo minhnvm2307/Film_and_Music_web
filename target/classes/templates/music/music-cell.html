@@ -23,11 +23,14 @@
 
         <div class="music-cell-container" th:fragment="music-cell">
             <div class="music-header">
-                <img id="song-poster" th:src="${Song.posterImg}" th:alt="${Song.songName}" class="poster-img-cell">
+                <img id="playing-poster" th:src="${Song.posterImg}" th:alt="${Song.songName}" class="poster-img-cell">
                 <div class="song-info">
-                    <h1 id="song-name" th:text="${Song.songName}"></h1>
+                    <h1 id="playing-song-name" th:text="${Song.songName}"></h1>
                     <p id="song-description" th:text="${Song.songDescription}"></p>
-                    <audio controls id="audio-cell" th:src="'/assets/audio/' + ${Song.audioLink}"></audio>
+                    <audio th:src="'/assets/audio/' + ${Song.audioLink}" id="audio-player" controls>
+                        <source id="audio-source" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 </div>
             </div>
         
@@ -38,7 +41,7 @@
                     <ul id="singer-list">
                         <li th:each="singer : ${Song.singers}">
                             <img th:src="${singer.avatarImg != '' ? singer.avatarImg : 'https://cdn4.iconfinder.com/data/icons/office-thick-outline/36/office-14-256.png'}" alt="Singer Image" class="singer-img">
-                            <span th:text="${singer.singerName}"></span>
+                            <span id="playing-singers" th:text="${singer.singerName}"></span>
                         </li>
                     </ul>
                 </div>
@@ -67,6 +70,6 @@
     <footer th:replace="~{layout/footer :: footer}"></footer>
     
     <script th:src="@{/assets/js/music/access-music-cell.js}"></script>
-    <!-- <script th:src="@{/assets/js/music/play-continue.js}"></script> -->
+    <script th:src="@{/assets/js/music/cell-play-continue.js}"></script>
 </body>
 </html>
