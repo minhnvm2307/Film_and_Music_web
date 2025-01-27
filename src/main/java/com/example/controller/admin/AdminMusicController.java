@@ -97,7 +97,19 @@ public class AdminMusicController {
     public String deleteSong(@RequestParam("songId") int songId) {
         songService.deleteSong(songId);
         return "success";
-    }    
+    }   
+    
+    @GetMapping("/admin/music/song-table-fragment")
+    public String getSongTableFragment(Model model) {
+        model.addAttribute("Songs", songService.getAllSongs());
+        return "admin/music-table :: song-table";
+    }
+
+    @GetMapping("/admin/music/singer-table-fragment")
+    public String getSingerTableFragment(Model model) {
+        model.addAttribute("Singers", singerService.getAllSingers());
+        return "admin/singer-table :: singer-table";
+    }
 
     /*
     * Music Management Page Components

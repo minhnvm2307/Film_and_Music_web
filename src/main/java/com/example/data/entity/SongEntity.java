@@ -62,6 +62,14 @@ public class SongEntity {
     )
     private List<SingerEntity> singers = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(
+        name = "song_playlist",
+        joinColumns = @JoinColumn(name = "song_id"),
+        inverseJoinColumns = @JoinColumn(name = "playlist_id")
+    )
+    private List<PlaylistEntity> playlists = new ArrayList<>();
+
     // Getters and Setters
     public List<SongCategoryEntity> getCategories() {
         return categories;
@@ -141,5 +149,15 @@ public class SongEntity {
 
     public void setComments(List<CommentEntity> comments) {
         this.comments = comments;
+    }
+
+    public List<PlaylistEntity> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(List<PlaylistEntity> playlists) {
+        this.playlists = playlists;
     }    
+
+    
 }

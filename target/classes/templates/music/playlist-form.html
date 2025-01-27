@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link th:href="@{/assets/css/images.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/mainHome.css}" rel="stylesheet" />
+</head>
+<body>
+    
+    
+    
+    <div class="playlist-form-container" th:fragment="create-playlist">
+        <link th:href="@{/assets/css/music/playlist-form.css}" rel="stylesheet">
+        <!-- Close button -->
+        <button class="close-button" id="close-playlist-form">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="create-form-title">
+            <h2>Create new playlist</h2>
+        </div>
+
+        <div class="create-form-input">
+            <input placeholder="Playlist name">
+            <button>
+                <i class="fas fa-plus"></i>
+                Create
+            </button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="add-to-playlist-container" th:fragment="add-to-playlist">
+        <link th:href="@{/assets/css/music/playlist-form.css}" rel="stylesheet">
+        <!-- Close button -->
+        <button class="close-button" id="close-add-to-playlist">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="add-to-playlist-title">
+            <h2>Choose Your Playlist or Create a New One</h2>
+        </div>
+    
+        <div class="add-to-playlist-form">
+            <!-- Add New Playlist Card -->
+            <div class="create-new-playlist-prompt" role="button" aria-label="Add New Playlist">
+                <div class="top-prompt">
+                    <span>+</span>
+                </div>
+                <div class="middle-prompt"></div>
+                <div class="bottom-prompt"></div>
+            </div>
+    
+            <!-- Existing Playlist Cards -->
+            <div class="playlist-wrapper" th:each="playlist : ${Playlists}" th:data-playlist-id="${playlist.playlistId}">
+                <div class="playlist-images">
+                    <img class="img1" src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" alt="Song 1">
+                    <img class="img2" src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" alt="Song 2">
+                    <img class="img3" src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" alt="Song 3">
+                    <img class="img4" src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" alt="Song 4">
+                </div>
+                <div class="playlist-info">
+                    <h3 class="playlist-name" th:text="${playlist.playlistName}">My  Playlist Name</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="playlist-wrapper" th:fragment="playlist-mini-cell" th:data-playlist-id="${playlist.playlistId}">
+        <div class="playlist-images">
+            <img class="img1" src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" alt="Song 1">
+            <img class="img2" src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" alt="Song 2">
+            <img class="img3" src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" alt="Song 3">
+            <img class="img4" src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" alt="Song 4">
+        </div>
+        <div class="playlist-info">
+            <h3 class="playlist-name" th:text="${playlist.playlistName}">My  Playlist Name</h3>
+            <span class="playlist-count">0 songs</span>
+        </div>
+    </div>
+    
+</body>
+</html>

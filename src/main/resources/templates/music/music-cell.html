@@ -27,10 +27,20 @@
                 <div class="song-info">
                     <h1 id="playing-song-name" th:text="${Song.songName}"></h1>
                     <p id="song-description" th:text="${Song.songDescription}"></p>
-                    <audio th:src="'/assets/audio/' + ${Song.audioLink}" id="audio-player" controls>
-                        <source id="audio-source" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
+                    <div class="play-controller">
+                        <button id="backward-button" class="play-control-button">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+
+                        <audio th:src="'/assets/audio/' + ${Song.audioLink}" id="audio-player" controls>
+                            <source id="audio-source" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+
+                        <button id="forward-button" class="play-control-button">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         
@@ -71,5 +81,6 @@
     
     <script th:src="@{/assets/js/music/access-music-cell.js}"></script>
     <script th:src="@{/assets/js/music/cell-play-continue.js}"></script>
+    <script th:src="@{/assets/js/music/control-play.js}"></script>
 </body>
 </html>

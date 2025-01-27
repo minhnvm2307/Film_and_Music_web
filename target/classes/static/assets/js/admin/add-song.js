@@ -64,6 +64,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (result === 'success') {
                 alert('Song updated successfully!');
                 resetForm();
+
+                // Fetch the updated fragment
+                reloadTable();
             } else {
                 alert('Failed to update song.');
             }
@@ -85,6 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (result === 'success') {
                 alert('Song added successfully!');
                 resetForm();
+
+                // Fetch the updated fragment
+                reloadTable();
             } else {
                 alert('Failed to add song.');
             }
@@ -102,6 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(result => {
             if (result === 'success') {
                 alert('Song deleted successfully!');
+                // Fetch the updated fragment
+                reloadTable();
             } else {
                 alert('Failed to delete song.');
             }
@@ -154,4 +162,15 @@ function confirmDelete(dialogMessage) {
         return true;
     }
     return false;
+}
+
+
+function reloadTable() {
+    fetch('/admin/music/song-table-fragment') // Endpoint to fetch updated table
+        .then(response => response.text())
+        .then(html => {
+            // Update the song table fragment
+            document.querySelector('.table-container').innerHTML = html;
+        })
+        .catch(error => console.error('Error updating song table:', error));
 }

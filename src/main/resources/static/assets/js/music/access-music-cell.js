@@ -25,6 +25,7 @@ function initializeTopSongSelect() {
 
 function goToPlay(card) {
     const songId = card.getAttribute('data-song-id');
+    localStorage.setItem('currentSongId', songId);
     const username = document.querySelector('.header-menu').getAttribute('data-username');
     window.location.href = `/music/music-cell?username=${username}&songId=${songId}`;
 }

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
     const playingCard = document.getElementById('playing-card');
-    const closeButton = document.getElementById('close-button');
 
     // Function to load the audio state from localStorage
     function loadAudioState() {
@@ -34,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const audioSource = document.getElementById('audio-source');
     
         const audioState = {
+            songId: localStorage.getItem('currentSongId'),
             songName: document.getElementById('playing-song-name').textContent,
             singers: document.getElementById('playing-singers').textContent,
             posterSrc: document.getElementById('playing-poster').src,
