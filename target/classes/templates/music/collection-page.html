@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections</title>
+
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link th:href="@{/assets/css/images.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/mainHome.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/music/collection.css}" rel="stylesheet">
+</head>
+<body>
+    <header th:insert="~{layout/header :: header}"></header>
+
+    <div class="side-menu" th:insert="~{layout/side-menu :: side-menu}"></div>
+
+    <!-- Hidden Playlist Form -->
+    <div class="playlist-form-container-hidden" th:insert="~{music/playlist-form :: create-playlist}"></div>
+
+    <!-- Hidden Add to Playlist Form -->
+    <div class="add-to-playlist-container-hidden" th:insert="~{music/playlist-form :: add-to-playlist}"></div>
+
+    <div class="collection-body">
+        <div class="collection-menu-sidebar">
+            <div class="header-sidebar">
+                <div class="header-icon">
+                    <i class="fas fa-compact-disc"></i>
+                    <span class="header-title">
+                        Library
+                    </span>
+                </div>
+
+                <button class="add-collection-button" title="create new playlist or folder">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+
+            <div class="section-sidebar">
+                <div class="section">
+                    <h2>Create your own first playlist</h2>
+                    <h3>So easy! Let us help you out</h3>
+                    <button id="create-section-button">Create playlist</button>
+                </div>
+
+                <div class="section">
+                    <h2>Let explore and follow some podcasts</h2>
+                    <h3>We'll update lastest episodes</h3>
+                    <button id="explore-podcast">Explore podcast</button>
+                </div>
+
+                <div class="section">
+                    <h2>Play your own collections</h2>
+                    <button id="your-collection">Visit your albums</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="collection-container">
+            <div class="collection-title">
+                <h1>Browsing Collections</h1>
+            </div>
+
+            <div class="playlist-container" >
+                <div th:each="playlist : ${Playlists}" th:insert="music/playlist-form :: playlist-mini-cell"></div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/assets/js/music/show-playlist-form.js}"></script>
+    <script th:src="@{/assets/js/music/show-4-posters-playlist.js}"></script>
+    
+</body>
+</html>

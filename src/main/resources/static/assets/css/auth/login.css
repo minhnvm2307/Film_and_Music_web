@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+    background-image: url("../../images/background.png");
+}
+
+.container {
+    display: flex;
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #5fffdf, #7bdbfe);
+    opacity: 0.9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; 
+    width: 90%;
+}
+
+.container h1 {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container form input {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    width: 100%;
+    max-width: 200px;
+    font-size: medium;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.container form .input-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.container form .input-group label {
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+
+.container form button {
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: #fff;
+    font-size: medium;
+    cursor: pointer;
+    outline: none;
+}
+
+.container form button:hover {
+    background: #555;
+}
+
+.container form .error {
+    color: red;
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+}
+
+.container form .sign-up {
+    font-size: small;
+    margin-top: 1rem;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 200px;
+}
+
+.password-wrapper input {
+    flex: 1;
+    padding-right: 1.5rem;
+}
+
+.password-wrapper .fas {
+    position: absolute;
+    right: 0.5rem;
+    cursor: pointer;
+    color: #888;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.password-wrapper .fas:hover {
+    color: #333;
+}

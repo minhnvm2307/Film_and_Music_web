@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="actors">
+    <link th:href="@{/assets/css/film/actor-list.css}" rel="stylesheet" />
+
+    <div class="casting-section">
+        <h2 class="actor-list-title">Casting</h2>
+        <hr>
+        <div class="actors-container">
+            <div class="actor" th:each="actor : ${Actors}">
+                <img th:src="${actor.actorImg}" th:alt="${actor.actorName}" />
+                <p class="name" th:text="${actor.actorName}"></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

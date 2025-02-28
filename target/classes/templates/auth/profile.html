@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="#{web.name}"></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link th:href="@{/assets/css/images.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/mainHome.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/auth/profile.css}" rel="stylesheet">
+</head>
+<body>
+    <header th:insert="~{layout/header :: header}"></header>
+    
+    <div class="side-menu" th:insert="~{layout/side-menu :: side-menu}"></div>
+
+    <div class="profile-page">
+        <div class="header">
+            <h1>My Profile</h1>
+            <button class="add-user-btn">+ Add Users</button>
+        </div>
+        <div class="profile-content">
+            <aside class="dashboard">
+                <ul>
+                    <li class="active">My Profile</li>
+                    <li>Liked films</li>
+                    <li>Liked songs</li>
+                    <li>My playlists</li>
+                    <li>Notification</li>
+                    <li>Delete Account</li>
+                </ul>
+            </aside>
+            <div class="main-content">
+                <section class="profile-header">
+                    <img class="avatar" th:src="${User.avatar_img}" alt="Avatar">
+                    <div class="info">
+                        <h2 th:text="${User.name}"></h2>
+                        <p th:text="${User.Role}"></p>
+                        <p>Hanoi, Vietnam</p>
+                    </div>
+                    <button class="edit-btn"><i class="fas fa-pen"></i> Edit</button>
+                </section>
+                <section class="details">
+                    <h3>Personal Information</h3>
+                    <div class="info-grid">
+                        <div>
+                            <label>First Name</label>
+                            <p id="first-name"></p>
+                        </div>
+                        <div>
+                            <label>Last Name</label>
+                            <p id="last-name"></p>
+                        </div>
+                        <div>
+                            <label>Email Address</label>
+                            <p th:text="${User.email}"></p>
+                        </div>
+                        <div>
+                            <label>Phone</label>
+                            <p>+84 123456789</p>
+                        </div>
+                    </div>
+                    <h3>Address</h3>
+                    <div class="info-grid">
+                        <div>
+                            <label>Country</label>
+                            <p>Vietnam</p>
+                        </div>
+                        <div>
+                            <label>City/State</label>
+                            <p>Hanoi</p>
+                        </div>
+                        <div>
+                            <label>Postal Code</label>
+                            <p>100000</p>
+                        </div>
+                        <div>
+                            <label>Tax ID</label>
+                            <p>VN123456789</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/assets/js/auth/profile.js}"></script>
+</body>
+</html>

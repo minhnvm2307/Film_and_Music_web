@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="filter-board" class="filter-container">
+        <link th:href="@{/assets/css/filter-menu.css}" rel="stylesheet" />
+        
+        <form method="get">
+            <label for="category">Category:</label>
+            <select id="category" name="categoryId">
+                <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+            </select>
+            <button type="button" id="filterButton">Filter</button>
+            <button type="button" id="resetButton" class="fas fa-close"></button>
+        </form>
+        <form method="get">
+            <label for="sortingType">Sort by:</label>
+            <select id="sortingType" name="sorting">
+                <option value="default">(Default)</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="rating">Rating</option>
+            </select>
+            <button type="button" id="sortButton">Sort</button>
+        </form>
+
+        <script th:src="@{/assets/js/film/filter.js}"></script>
+    </div>
+</body>
+</html>

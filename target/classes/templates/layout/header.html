@@ -1,35 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-    <nav th:fragment="header">
-        <div id="header">
-            <div class="hbox">
-                <div id="logo">
-                    <a th:href="@{/index}" title="MINH-FILM">
-                        <img th:src="@{/assets/images/logo.png}" alt="Logo" />
-                    </a>
-                </div>
-                <ul id="main-menu" class="no-bullet">
-                    <li>
-                        <a title="Top film" href="#" class="btn">Topphim</a>
-                    </li>
-                    <li>
-                        <a title="Recently film" href="#" class="btn">PhimGanday</a>
-                    </li>
-                    <li>
-                        <a title="Liked film" href="#" class="btn">PhimYeuThich</a>
-                    </li>
-                </ul>
-                <form id="form-search" class="form-search">
-                    <input placeholder="Tìm kiếm" type="text" id="search-input">
-                </form>
+    <nav th:fragment="header" class="header-menu" th:attr="data-username=${User.username}">
+        <link th:href="@{/assets/css/top-menu.css}" rel="stylesheet" />
+        
+        <div class="top-menu">
+            <a href="#" class="active">
+                <span>Popular</span>
+            </a>
+            <a th:href="@{/film/film-page(username=${User.username})}">
+                <span>Films</span>
+            </a>
+            <a href="#">
+                <span>TV series</span>
+            </a>
+            <a href="#">
+                <span>Cartoons</span>
+            </a>
+            <a href="#">
+                <span>Trailers</span>
+            </a>
+            <a th:href="@{/music/collection(username=${User.username})}">
+                <span>Collections</span>
+            </a>
+            <a href="#">
+                <span>Announcements</span>
+            </a>
+            <div class="user-info">
+                <span th:text="${User.name}"></span>
+                <a th:href="@{/index(username=${User.username})}" title="MINH-FILM">
+                    <img th:src="${User.avatar_img}" th:alt="${User.name}" class="avatar" />
+                </a>
+            </div>
+            <form id="form-search" class="search-form">
+                <button id="menu-search-button" class="fa-solid fa-magnifying-glass"></button>
+                <input id="search-input" placeholder="Search films, songs, ..." type="text">
+            </form>
+
+            <!-- the change theme switcher-->
+            <div class="theme-switch">
+              <input type="checkbox" id="theme-checkbox" />
+              <label for="theme-checkbox">
+                <div></div>
+                <span>
+                  <i class="fas fa-sun"></i>
+                </span>
+                <span>
+                  <i class="fas fa-moon"></i>
+                </span>
+              </label>
             </div>
         </div>
 
-        <div>
-            <h1>MINH-FILM.net</h1>
-        </div>
-        <h3>Spring Boot + Thymeleaf + MySQL</h3>
+
+        <script th:src="@{/assets/js/themeSwitch.js}"></script>
+        <script th:src="@{/assets/js/layout_fragments/top-menu.js}"></script>
     </nav>
 </body>
 </html>

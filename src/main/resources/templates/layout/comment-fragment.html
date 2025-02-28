@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    /* From Uiverse.io by zanina-yassine
+    *
+    *
+    *This page is a fragment of the comment section of the film page.
+    *
+    *It contains :
+    *   - A text area to add a new comment (text-box) includes (FilmCell, User)
+    *   - A list of comments (comments) includes (Comments)
+    *       + comment-react (replies-container) includes (ChildCommentsMap[])
+    *       + replies box for each comment
+    *
+    *
+    */ 
+    <div class="comment-card" th:fragment="comment-fragment">
+        <link th:href="@{/assets/css/comment.css}" rel="stylesheet" />
+
+        <span class="title">Comments</span>
+
+        <div class="text-box" 
+            th:if="${FilmCell != null or Song != null}" 
+            th:data-section-id="${FilmCell != null ? FilmCell[0] : Song.SongId}"
+            th:data-section-type="${FilmCell != null ? 'film' : 'song'}"
+            th:data-user-id="${User.user_id}">
+
+            <div class="box-container">
+                <textarea placeholder="Add your comment"></textarea>
+                <div>
+                    <div class="formatting">
+                        <button type="button">
+                            <i class="fas fa-icons"></i>
+                        </button>
+                        <button type="submit" class="send" title="Send" id="send-comment">
+                            <i class="fas fa-arrow-up" style="color: #fff;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:each="comment : ${Comments}" class="comments">
+            <div class="comment-react">
+                <hr>
+                <span th:text="${comment.comment_id}"></span>
+                <button type="button" style="border: none;" class="like-button">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </div>
+            <div class="comment-container">
+                <div class="user">
+                    <div class="user-pic">
+                        <img th:src="${comment.user.avatar_img}" style="max-width: 40px;"></img>
+                    </div>
+                    <div class="user-info">
+                        <span th:text="${comment.user.name}"></span>
+                        <span th:if="${comment.user.role == T(com.example.data.entity.WebEnum).admin}" style="color: #a87575;">Admin</span>
+                        <p th:text="${comment.time_rated}"></p>
+                    </div>
+                </div>
+                <div class="comment-content" th:utext="${comment.comment_text}"></div>
+            </div>
+            <br>
+            <div>
+                <button type="button" style="border: none;" class="reply-button">
+                    <i class="fas fa-reply"></i>
+                </button>
+                <button type="button" style="border: none;" class="like-button">
+                    <i class="fas fa-thumbs-up" style="color: #575353;"></i>
+                </button>
+                <span style="color: #575353;">2</span>
+                <button type="button" style="border: none;" class="dislike-button">
+                    <i class="fas fa-thumbs-down" style="color: #575353;"></i>
+                </button>
+                <span style="color: #575353;">0</span>
+            </div>
+            <br>
+            
+            <div class="reply-box" th:attr="data-parentcomment-id=${comment.comment_id}">
+                <div class="box-container">
+                    <textarea placeholder="Reply"></textarea>
+                    <div>
+                        <div class="formatting
+                        ">
+                            <button type="submit" class="send-reply-comment" title="Send">
+                                <i class="fas fa-arrow-up" style="color: #2a2828;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Filled <hr> to the blank in grid -->
+            <br id="filled-to-grid" style="display: none;">
+
+            <!-- Replies -->
+            <div class="replies-container" th:if="${ChildCommentsMap[comment.comment_id].size() > 0}">
+                <div class="comment-container" th:each="childComment : ${ChildCommentsMap[comment.comment_id]}">
+                    <div class="user">
+                        <div class="user-pic">
+                            <img th:src="${childComment.user.avatar_img}" style="max-width: 40px;"></img>
+                        </div>
+                        <div class="user-info">
+                            <!-- If the role of user is admin show the span "Admin" -->
+                            <span th:if="${childComment.user.role == T(com.example.data.entity.WebEnum).admin}" style="color: #a87575;">Admin</span>
+                            <span th:text="${childComment.user.name}"></span>
+                            <p th:text="${childComment.time_rated}"></p>
+                        </div>
+                    </div>
+                    <div class="comment-content" th:utext="${childComment.comment_text}"></div>
+                    <br>
+                </div>
+            </div>
+
+        </div>   
+        
+        <script th:src="@{/assets/js/comment.js}"></script>
+    </div>
+    
+</body>
+</html>

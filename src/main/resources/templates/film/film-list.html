@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <nav th:fragment="film-list">
+        <link th:href="@{/assets/css/film/film-list.css}" rel="stylesheet" />
+
+        <h1 id="title-section">Recommended Films</h1>
+
+        <div id="film-container" class="film-container">
+            <div th:each="film : ${FilmsWithRating}" class="film-card" th:attr="data-film-id=${film[0]}">
+                <div class="img-overlay">
+                    <img th:src="${film[2]}" th:alt="${film[1]}">
+                </div>
+                <div class="film-overlay" th:data-rating="${film[4]}">
+
+                    <h2 class="film-title" th:text="${film[1]}"></h2>
+
+                    <span class="film-year" th:text="${#dates.format(film[3], 'yyyy')}"></span>
+                    <div class="film-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rated-detail" th:text="${film[4]} + ' / 5'"></span>
+
+                    <div class="film-container">
+                        <video class="film-video" th:src="${film[5]} " style="display: none; width: 100%; height: auto;" controls></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="@{/assets/js/film/access-film-cell.js}"></script>
+    </nav>
+
+    <nav th:fragment="top-films" class="slide-wrapper">
+        <link th:href="@{/assets/css/film/poster-film.css}" rel="stylesheet" />
+
+        <div class="main-poster-container">
+            <div class="main-poster" th:each="film, iterStat : ${FilmsWithRating}"
+                 th:if="${iterStat.index < 5}"
+                 th:data-rating="${film[4]}">
+
+                <img class="img-background" th:src="${film[2]}" th:alt="${film[1]}">
+
+                <div class="poster-content">
+                    <h2 class="poster-title" th:text="${film[1]}"></h2>
+                    <span class="poster-year" th:text="${#dates.format(film[3], 'yyyy')}"></span>
+                    <div id="five-star-[[${iterStat.index}]]" class="poster-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="poster-ratedDetail" th:text="${film[4]} + ' / 5'"></span>
+                </div>
+            </div>
+            <div class="pagination-controls">
+                <i id="prev-btn" class="fa-solid fa-arrow-left"></i>
+                <i id="next-btn" class="fa-solid fa-arrow-right"></i>
+            </div>
+        </div>
+
+        <script th:src="@{/assets/js/film/pagination.js}"></script>
+    </nav>
+    
+</body>
+</html>

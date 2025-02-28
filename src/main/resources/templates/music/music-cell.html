@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{web.name}"></title>
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link th:href="@{/assets/css/images.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/mainHome.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/music/music-cell.css}" rel="stylesheet" />
+</head>
+<body>
+    <header th:insert="~{layout/header :: header}"></header>
+
+    <div class="side-menu" th:insert="~{layout/side-menu :: side-menu}"></div>
+
+    <div class="cell-page-container" style="display: flex; margin-top: 80px; justify-content: evenly; gap: 0;">
+
+        <div th:replace="~{music/music-top :: playlist}"></div>
+
+        <div class="music-cell-container" th:fragment="music-cell">
+            <div class="music-header">
+                <img id="playing-poster" th:src="${Song.posterImg}" th:alt="${Song.songName}" class="poster-img-cell">
+                <div class="song-info">
+                    <h1 id="playing-song-name" th:text="${Song.songName}"></h1>
+                    <p id="song-description" th:text="${Song.songDescription}"></p>
+                    <div class="play-controller">
+                        <button id="backward-button" class="play-control-button">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+
+                        <audio th:src="'/assets/audio/' + ${Song.audioLink}" id="audio-player" controls>
+                            <source id="audio-source" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+
+                        <button id="forward-button" class="play-control-button">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="music-details">
+                <!-- Singers Section -->
+                <div class="details-section singers-section">
+                    <h3>Singers</h3>
+                    <ul id="singer-list">
+                        <li th:each="singer : ${Song.singers}">
+                            <img th:src="${singer.avatarImg != '' ? singer.avatarImg : 'https://cdn4.iconfinder.com/data/icons/office-thick-outline/36/office-14-256.png'}" alt="Singer Image" class="singer-img">
+                            <span id="playing-singers" th:text="${singer.singerName}"></span>
+                        </li>
+                    </ul>
+                </div>
+            
+                <!-- Categories Section -->
+                <div class="details-section categories-section">
+                    <h3>Categories</h3>
+                    <ul id="category-list">
+                        <li th:each="category : ${Song.categories}" th:text="${category.categoryName}" class="category-item"></li>
+                    </ul>
+                </div>
+            
+                <!-- Release Date Section -->
+                <div class="details-section">
+                    <h3>Release Date</h3>
+                    <p id="release-date" th:text="${Song.releaseDate}"></p>
+                </div>
+            </div>            
+        </div>
+    </div>
+
+    <div class="container">
+        <div th:replace="~{layout/comment-fragment :: comment-fragment}"></div>
+    </div>
+
+    <footer th:replace="~{layout/footer :: footer}"></footer>
+    
+    <script th:src="@{/assets/js/music/access-music-cell.js}"></script>
+    <script th:src="@{/assets/js/music/cell-play-continue.js}"></script>
+    <script th:src="@{/assets/js/music/control-play.js}"></script>
+</body>
+</html>

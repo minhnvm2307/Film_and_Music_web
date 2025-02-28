@@ -1,0 +1,130 @@
+/* Music Container */
+.music-container {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+/* Music Card */
+.music-card {
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.music-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Poster Wrapper */
+.poster-wrapper {
+    flex-shrink: 0;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.4s ease;
+}
+
+/* Play Button on Hover */
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.poster-wrapper:hover .poster-img {
+    filter: blur(7px);
+}
+
+.poster-wrapper:hover .play-btn {
+    display: flex;
+    transition: background-color 0.4s ease;
+}
+
+/* make the play button green when hover and the background blurer */
+.poster-wrapper:hover .play-btn:hover {
+    background-color: #1db954;
+}
+
+/* Music Info */
+.music-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    width: 100%;
+}
+
+/* Info Left */
+.info-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.song-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.singers {
+    font-size: 11px;
+    color: #b3b3b3;
+    margin-top: 5px;
+}
+
+/* Info Right */
+.info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-right button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #b3b3b3;
+    transition: color 0.2s ease;
+}
+
+.info-right button:hover {
+    color: #1db954;
+}
+
+.info-right .like-btn i:hover {
+    color: #ff4d4d;
+}
+
+.info-right .save-btn i:hover {
+    color: #ffc107;
+}

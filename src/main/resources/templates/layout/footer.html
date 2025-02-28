@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-    <footer th:fragment="footer">
-        <div style="text-align: center;">
+    <footer th:fragment="footer" style="background-color: #333; color: white; padding: 20px 0;">
+        <div style="text-align: center; margin-bottom: 10px;">
             <span>&copy; 2024 MINH-FILM. All rights reserved.</span>
+        </div>
+        <div style="text-align: center; margin-bottom: 10px;">
+            <br>
+            <br>
+            <a href="/privacy-policy" style="color: white; margin: 0 10px;">Privacy Policy</a>
+            <a href="/terms-of-service" style="color: white; margin: 0 10px;">Terms of Service</a>
+            <a href="/contact-us" style="color: white; margin: 0 10px;">Contact Us</a>
+        </div>
+        <div style="text-align: center;">
+            <i class="fab fa-facebook" style="margin: 0 10px;"></i>
+            <a href="https://www.facebook.com/profile.php?id=100034244677777" target="_blank" style="color: white; margin: 0 10px;">Facebook</a>
+
+            <i class="fab fa-twitter" style="margin: 0 10px;"></i>
+            <a href="https://www.twitter.com" target="_blank" style="color: white; margin: 0 10px;">Twitter</a>
+
+            <i class="fab fa-instagram" style="margin: 0 10px;"></i>
+            <a href="https://www.instagram.com" target="_blank" style="color: white; margin: 0 10px;">Instagram</a>
         </div>
     </footer>
 </body>

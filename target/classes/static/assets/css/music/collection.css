@@ -1,0 +1,142 @@
+.collection-body {
+    display: flex;
+    gap: 10px;
+    margin-top: 80px;
+    margin-left: 90px;
+}
+
+.collection-menu-sidebar {
+    max-width: 300px;
+    padding: 15px;
+    padding-bottom: 40px;
+    background-color: rgb(54, 52, 52);
+    color: aliceblue;
+    border-radius: 15px;
+    border-color: transparent;
+}
+
+.collection-menu-sidebar h2 {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.collection-menu-sidebar h3 {
+    font-size: small;
+}
+
+.header-sidebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    padding: 10px;
+    color: rgb(168, 171, 174);
+}
+
+.header-sidebar .fas {
+    font-size: 1.4rem;
+    padding: 0cap;
+}
+
+.header-sidebar button {
+    height: fit-content;
+    justify-content: center;
+    padding: 3px;
+    background: none;
+    border: none;
+    color: rgb(168, 171, 174);
+    transition: color 0.3s ease-in-out;
+}
+
+.header-sidebar button:hover {
+    background-color: rgb(91, 91, 91);
+    border-radius: 50px;
+    color: aliceblue;
+}
+
+.section-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 20px;
+}
+
+.section-sidebar .section {
+    padding: 7px;
+    padding-left: 15px;
+    border-radius: 15px;
+    background-color: rgb(75, 77, 76);
+}
+
+.section-sidebar .section button {
+    border-radius: 15px;
+    border-color: transparent;
+    padding: 5px;
+    margin: 5px;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+.section-sidebar .section button:hover {
+    background-color: rgb(220, 216, 216);
+    transform: scale(1.07);
+}
+
+/* Main container */
+.collection-container {
+    width: 100%;
+    margin-right: 20px;
+    padding: 15px;
+    padding-bottom: 40px;
+    background-color: rgb(54, 52, 52);
+    color: aliceblue;
+    border-radius: 15px;
+    border-color: transparent;
+    overflow-y: scroll;
+}
+
+.playlist-container  {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: fit-content;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.playlist-container .playlist-box {
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    width: 120px;
+    padding: 10px;
+    background-color: #616060;
+    border-radius: 15px;
+}
+
+.playlist-box .playlist-name {
+    font-weight: bold;
+}
+
+
+/* Playlist form container */
+.playlist-form-container-hidden {
+    position: fixed;
+    /* Reducing opacity surrounding */
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.add-to-playlist-container-hidden {
+    position: fixed;
+    /* Reducing opacity surrounding */
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+}

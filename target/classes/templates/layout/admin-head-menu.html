@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{web.admin}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+</head>
+<body>
+    /*
+    * This is the admin head menu
+    * It contains the admin menu items
+    * - Home
+    * - Cinema Management
+    * - Actor Management
+    * - Music Management
+    * - Singer Management
+    * - Genre Management
+    * - User Management
+    * - Logout
+    */
+    <div class="container" th:fragment="admin-head-menu">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Admin Menu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/index(username=${User.username})}">Home <span class="sr-only">(current)</span></a>
+                        <span class="fas fa-home"></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cinema Management</a>
+                        <span class="fas fa-film"></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Actor Management</a>
+                        <span class="fas fa-user"></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/music(username=${User.username})}">Music Management</a>
+                        <span class="fas fa-music"></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/singer(username=${User.username})}">Singer Management</a>
+                        <span class="fas fa-microphone"></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Genre Management</a>
+                        <span class="fas fa-guitar"></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">User Management</a>
+                        <span class="fas fa-users"></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                        <span class="fas fa-sign-out-alt"></span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <style>
+            .container {
+                display: flex;
+                margin-top: 20px;
+            }
+
+            a {
+                text-decoration: none;
+            }
+            li {
+                list-style-type: none;
+                background-color: #cbdae9;
+                padding: 10px;
+                border-radius: 5px;
+            }
+            
+            .navbar {
+                background-color: #f8f9fa;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .nav-link {
+                font-size: 1.2rem;
+            }
+            
+            .navbar-nav {
+                display: flex;
+                margin-left: auto;
+            }
+
+            .navbar-nav .nav-item {
+                margin-right: 10px;
+            }
+
+            .navbar-nav .nav-item a {
+                color: #000;
+            }
+            
+            .navbar-nav .nav-item a:hover {
+                color: #007bff;
+            }
+
+            .navbar-nav .nav-item.active a {
+                color: #007bff;
+                font-weight: bold;
+            }
+
+            .nav-item.active li {
+                background-color: #007bff;
+                border: solid 1px #222427;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.nav-item').forEach(function (item) {
+                    item.addEventListener('click', function () {
+                        document.querySelectorAll('.nav-item').forEach(function (el) {
+                            el.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    });
+                });
+
+                // Add active class to the current button based on the URL
+                var currentLocation = window.location.href;
+                document.querySelectorAll('.nav-item').forEach(function (item) {
+                    if (currentLocation.includes(item.querySelector('a').href)) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage singers</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link th:href="@{/assets/css/admin/music-management.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- Include the admin head menu -->
+    <div style="position: sticky; z-index: 4;">
+        <div th:replace="~{layout/admin-head-menu :: admin-head-menu}"></div>
+    </div>
+    
+    <div class="admin-container">
+        <header>
+            <h1>Manage singers</h1>
+        </header>
+        <!-- Singers Table -->
+        <h2>Singer list</h2>
+        <div th:replace="~{admin/music-table :: singer-table}"></div>
+    
+        <div class="form-container">
+            <h2>Singer Details</h2>
+            <form id="singer-form">
+
+                <!-- singer ID, Name, Description, Release Date 
+                 Having Input Form to Edit Update 
+                 ID is readonly and auto-generated-->
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="singer-id">ID</label>
+                        <input type="text" id="singer-id" name="id" placeholder="singer ID" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="singer-name">Name</label>
+                        <input type="text" id="singer-name" name="name" placeholder="singer Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="singer-country">Avatar</label>
+                        <input type="text" id="singer-country" name="country" placeholder="singer Country">
+                    </div>
+                    <div class="form-group" style="height: 90px;">
+                        <label for="singer-description">Description</label>
+                        <textarea id="singer-description" name="description" placeholder="singer Description"></textarea>
+                    </div>
+                    <!-- Release Date of the singer -->
+                    <div class="form-group">
+                        <label for="singer-date">Date of Birth</label>
+                        <input type="date" id="singer-date" name="date">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="singer-poster">Poster Image URL</label>
+                    <input type="url" id="singer-poster" name="poster" placeholder="Poster Image URL">
+                    <div class="poster-preview">
+                        <img id="poster-preview" src="" alt="Poster Preview">
+                    </div>
+                    <span id="image-status">status:</span>
+                </div>
+
+                <!-- Form Buttons 
+                 Save the Form 
+                 Add New Song-->
+                 <div class="form-buttons">
+                    <button type="submit" id="save-btn" class="save-btn">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                    <button type="button" id="add-btn" class="add-btn">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                    <button type="button" id="cancel-btn" class="cancel-btn">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+
+            </form>        
+    </div>
+
+    <script th:src="@{/assets/js/admin/singer-management.js}"></script>
+    <script th:src="@{/assets/js/admin/add-singer.js}"></script>
+</body>
+</html>

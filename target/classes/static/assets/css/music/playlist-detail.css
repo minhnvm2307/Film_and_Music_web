@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.playlist-detail-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1e3264, #121212);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.playlist-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playlist-detail-header-image {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.playlist-detail-header-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+}
+
+.playlist-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.playlist-info h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.playlist-info p {
+    font-size: 1rem;
+    margin: 0;
+    color: #b3b3b3;
+}
+
+.playlist-info p span {
+    color: white;
+    font-weight: 500;
+}
+
+.playlist-detail-header-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button.play-button {
+    background: #1db954;
+    color: white;
+    font-weight: bold;
+}
+
+button.play-button:hover {
+    background: #1ed760;
+    transform: scale(1.05);
+}
+
+button.follow-button {
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: white;
+}
+
+button.follow-button:hover {
+    background: #ffffff;
+    color: black;
+}
+
+button.more-button {
+    background: transparent;
+    color: white;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+}
+
+button.more-button:hover {
+    color: #b3b3b3;
+}
+
+/* Music Card */
+.music-card {
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.music-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Poster Wrapper */
+.poster-wrapper {
+    flex-shrink: 0;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.4s ease;
+}
+
+/* Play Button on Hover */
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.poster-wrapper:hover .poster-img {
+    filter: blur(7px);
+}
+
+.poster-wrapper:hover .play-btn {
+    display: flex;
+    transition: background-color 0.4s ease;
+}
+
+/* make the play button green when hover and the background blurer */
+.poster-wrapper:hover .play-btn:hover {
+    background-color: #1db954;
+}
+
+/* Music Info */
+.music-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    width: 100%;
+}
+
+/* Info Left */
+.info-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.song-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.singers {
+    font-size: 11px;
+    color: #b3b3b3;
+    margin-top: 5px;
+}
+
+/* Info Right */
+.info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-right button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #b3b3b3;
+    transition: color 0.2s ease;
+}
