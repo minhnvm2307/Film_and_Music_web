@@ -1,3 +1,4 @@
+-- Active: 1740220355320@@127.0.0.1@3306@ai_fitness
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
@@ -6,6 +7,10 @@
 -- Thời gian đã tạo: Th1 25, 2025 lúc 12:07 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
+
+DROP DATABASE IF EXISTS `cinemamodels`;
+CREATE DATABASE IF NOT EXISTS `cinemamodels` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `cinemamodels`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1002,7 +1007,6 @@ ALTER TABLE `playlists`
 --
 ALTER TABLE `song_category`
   ADD CONSTRAINT `song_category_fk` FOREIGN KEY (`song_id`) REFERENCES `songs` (`song_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `song_category_ibfk_1` FOREIGN KEY (`song_id`) REFERENCES `songs` (`song_id`),
   ADD CONSTRAINT `song_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories_of_song` (`category_id`);
 
 --

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link href="/src/main/resources/static/assets/css/music/playlist-detail.css" rel="stylesheet"></link>
+</head>
+<body>
+    <!-- <header th:insert="~{layout/header :: header}"></header>
+
+    <div class="side-menu" th:insert="~{layout/side-menu :: side-menu}"></div> -->
+
+    <div class="playlist-detail-container">
+        <div class="playlist-detail-header">
+            <div class="playlist-detail-header-image">
+                <img src="https://i.ytimg.com/vi/4ka_515E48s/maxresdefault.jpg" alt="playlist-image">
+                <div class="playlist-info">
+                    <h1>Playlist Name</h1>
+                    <p>Created by <span>Nguyen van minh</span></p>
+                    <p>Number of songs: <span>10</span></p>
+                </div>
+            </div>
+            <div class="playlist-detail-header-buttons">
+                <button class="play-button">Play</button>
+                <button class="follow-button">Follow</button>
+                <button class="more-button">...</button>
+            </div>
+        </div>
+
+        <div class="song-playlist-wrapper">
+            <div class="music-card">
+                <div class="poster-wrapper">
+                    <img src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" class="poster-img">
+
+                    <button class="play-btn"
+                    ><i class="fas fa-play"></i></button>
+                    
+                </div>
+                <div class="music-info">
+                    <div class="info-left">
+                        <h3 th:text="${song.songName}" class="song-name"></h3>
+                        <p>1000 Anh Mat</p>
+                        <p>Shiki - Obito</p>
+                    </div>
+                    <div class="info-right">
+                        <button class="more-button">...</button>
+                    </div>
+                </div>
+            </div>
+            <div class="music-card">
+                <div class="poster-wrapper">
+                    <img src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" class="poster-img">
+
+                    <button class="play-btn"
+                    ><i class="fas fa-play"></i></button>
+                    
+                </div>
+                <div class="music-info">
+                    <div class="info-left">
+                        <h3 th:text="${song.songName}" class="song-name"></h3>
+                        <p>1000 Anh Mat</p>
+                        <p>Shiki - Obito</p>
+                    </div>
+                    <div class="info-right">
+                        <button class="more-button">...</button>
+                    </div>
+                </div>
+            </div>
+            <div class="music-card">
+                <div class="poster-wrapper">
+                    <img src="https://cdn1.iconfinder.com/data/icons/eighties-1/92/disc-256.png" class="poster-img">
+
+                    <button class="play-btn"
+                    ><i class="fas fa-play"></i></button>
+                    
+                </div>
+                <div class="music-info">
+                    <div class="info-left">
+                        <h3 th:text="${song.songName}" class="song-name"></h3>
+                        <p>1000 Anh Mat</p>
+                        <p>Shiki - Obito</p>
+                    </div>
+                    <div class="info-right">
+                        <button class="more-button">...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

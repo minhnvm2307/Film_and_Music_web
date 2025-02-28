@@ -19,5 +19,7 @@ public interface PlaylistService {
     public void deletePlaylist(Integer playlistId);
 
     public void addSongToPlaylist(Integer playlistId, Integer songId);
+
+    public void removeSongFromPlaylist(Integer playlistId, Integer songId);
     
 }

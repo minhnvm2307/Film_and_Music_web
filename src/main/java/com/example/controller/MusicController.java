@@ -216,12 +216,12 @@ public class MusicController {
         return "success";
     }
 
-    // @PostMapping("/music/collection/update-playlist")
-    // @ResponseBody
-    // public String updatePlaylist(@RequestParam Integer playlistId, @RequestParam String playlistName) {
-    //     playlistService.
-    //     return "success";
-    // }
+    @PostMapping("/music/collection/update-playlist")
+    @ResponseBody
+    public String updatePlaylist(@RequestParam Integer playlistId, @RequestParam String playlistName) {
+        playlistService.removeSongFromPlaylist(playlistId, playlistId);
+        return "success";
+    }
 
     @PostMapping("/music/collection/remove-playlist")
     @ResponseBody

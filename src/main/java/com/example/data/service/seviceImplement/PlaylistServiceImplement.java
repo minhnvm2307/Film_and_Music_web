@@ -76,5 +76,15 @@ public class PlaylistServiceImplement implements PlaylistService {
 
         playlistRepository.save(playlistEntity);
     }
+
+    @Override
+    public void removeSongFromPlaylist(Integer playlistId, Integer songId) {
+        PlaylistEntity playlistEntity = playlistRepository.findById(playlistId).get();
+        SongEntity songEntity = songRepository.findById(songId).get();
+
+        playlistEntity.getSongs().remove(songEntity);
+
+        playlistRepository.save(playlistEntity);
+    }
     
 }
