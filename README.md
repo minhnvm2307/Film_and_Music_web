@@ -26,7 +26,7 @@
 
 ## Setup
 
-'''
+```bash
 # Dependencies
 java-openjdk21
 springboot (pom.xml) + maven
@@ -47,5 +47,5 @@ query: CREATE DATABASE cinemalmodels;
 java -jar target/demo.jar
 
 # Open web
-'''
+```
  
